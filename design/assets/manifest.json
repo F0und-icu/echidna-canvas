@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "imported_on": "2026-10-16",
+  "method": "Extracted unchanged from the selected prototype embedded assets; no new generation or image editing",
+  "assets": [
+    {
+      "key": "echidna",
+      "file": "characters/echidna.webp",
+      "sha256": "05df14aecebd1f654cd6823ee64bb42e55071b76933c424f124a97708dfe27df",
+      "bytes": 103042,
+      "dimensions": [
+        576,
+        768
+      ],
+      "kind": "generated from user-selected character reference",
+      "official": false,
+      "description": "Silver-lilac hair, butterfly ornament, ivory bomber jacket, pleated skirt, sneakers",
+      "layout": {
+        "idle": [
+          0,
+          0,
+          432,
+          512
+        ],
+        "thinking": [
+          432,
+          0,
+          336,
+          512
+        ],
+        "working": [
+          0,
+          512,
+          432,
+          512
+        ],
+        "reporting": [
+          432,
+          512,
+          336,
+          512
+        ]
+      },
+      "coordinate_space": [
+        768,
+        1024
+      ]
+    },
+    {
+      "key": "claude",
+      "file": "characters/claude.webp",
+      "sha256": "e564a8a31757bd6fc966f366e5fd1244967a99a4812b6fcc5b3fdc47f34fe404",
+      "bytes": 48648,
+      "dimensions": [
+        768,
+        512
+      ],
+      "kind": "generated original warm scholarly character",
+      "official": false,
+      "coordinate_space": [
+        1536,
+        1024
+      ],
+      "layout": {
+        "type": "single original character, fullbody left and matching chibi right",
+        "fullbody": {
+          "visibleBoundsAtAlpha128": {
+            "x": 157,
+            "y": 5,
+            "width": 476,
+            "height": 1015
+          },
+          "recommendedCssFrame": {
+            "x": 145,
+            "y": 0,
+            "width": 502,
+            "height": 1024
+          }
+        },
+        "chibi": {
+          "visibleBoundsAtAlpha128": {
+            "x": 964,
+            "y": 242,
+            "width": 400,
+            "height": 759
+          },
+          "recommendedCssFrame": {
+            "x": 949,
+            "y": 226,
+            "width": 432,
+            "height": 790
+          }
+        }
+      }
+    },
+    {
+      "key": "deepseek",
+      "file": "characters/deepseek.webp",
+      "sha256": "8b0ed675fdf8d5c1a3850a1313767792f3f2c0fa4022dcaeeca775c815ae033d",
+      "bytes": 106778,
+      "dimensions": [
+        768,
+        512
+      ],
+      "kind": "generated original whale-inspired character",
+      "official": false,
+      "coordinate_space": [
+        768,
+        512
+      ],
+      "layout": {
+        "standing": {
+          "x": 0,
+          "y": 0,
+          "width": 438,
+          "height": 512
+        },
+        "chibi": {
+          "x": 444,
+          "y": 100,
+          "width": 324,
+          "height": 412
+        }
+      }
+    },
+    {
+      "key": "deepseekActions",
+      "file": "characters/deepseek-actions.webp",
+      "sha256": "cbd097bfae823eda23f9cece880565eeb12d02f4e48b7a36a5669e0f31100946",
+      "bytes": 103724,
+      "dimensions": [
+        768,
+        768
+      ],
+      "kind": "generated actions for the original whale-inspired character",
+      "official": false,
+      "coordinate_space": [
+        768,
+        768
+      ],
+      "layout": [
+        {
+          "id": "ready",
+          "x": 0,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "action": "Hands lightly held in front, standing ready with an open welcoming expression"
+        },
+        {
+          "id": "thinking",
+          "x": 384,
+          "y": 0,
+          "width": 384,
+          "height": 384,
+          "action": "Hand at chin, other arm folded, curious upward gaze"
+        },
+        {
+          "id": "working",
+          "x": 0,
+          "y": 384,
+          "width": 384,
+          "height": 384,
+          "action": "Holding and operating a small open laptop, focused gaze"
+        },
+        {
+          "id": "reporting",
+          "x": 384,
+          "y": 384,
+          "width": 384,
+          "height": 384,
+          "action": "Presenting one report sheet, satisfied smile"
+        }
+      ]
+    },
+    {
+      "key": "beatrice",
+      "file": "characters/archivist.webp",
+      "sha256": "e4e6748e973aa8a41d429b8647c635995a655330f02ce58ef10b75d857c059a5",
+      "bytes": 69656,
+      "dimensions": [
+        576,
+        384
+      ],
+      "kind": "generated Beatrice from Re:Zero fan art for private design prototype",
+      "official": false,
+      "distribution_rights": "not established",
+      "coordinate_space": [
+        768,
+        512
+      ],
+      "layout": {
+        "holding": [
+          0,
+          0,
+          384,
+          512
+        ],
+        "reading": [
+          384,
+          0,
+          384,
+          512
+        ]
+      }
+    }
+  ]
+}
