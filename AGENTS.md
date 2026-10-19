@@ -18,6 +18,10 @@ The imported prototype is a design baseline, not a production runtime. Preserve 
 
 ## Implementation discipline
 
+The user-authorized Codex defaults are HTTP-only model transport, full filesystem and network access, live web search, and no interactive execution approvals. Do not add or reintroduce execution restrictions, disabled capabilities, permission prompts, or limiting developer instructions without the user's prior explicit agreement. Verification-stage restrictions must not become product defaults.
+
+App-added developer instructions must contain tool usage only: parameters, return values, reference syntax, and call examples. Do not append task, persona, workflow, style, or other behavioral instructions. User messages remain unchanged.
+
 Implement only the active stage and its acceptance criteria. Do not treat the roadmap as authorization to finish every future stage. Use the simplest solution supported by current contracts; do not hide defects behind retries, silent skips, defaults, or speculative compatibility layers.
 
 Validate untrusted boundaries once. Keep failures visible and preserve causes, security checks, resource cleanup, and unknown execution state. Each rule for event projection, command admission, deduplication, and provenance has one owner.

@@ -1,0 +1,133 @@
+[
+  {
+    "start": {
+      "type": "mcpToolCall",
+      "id": "mcp",
+      "server": "fixture",
+      "tool": "lookup",
+      "arguments": { "city": "上海" },
+      "status": "inProgress"
+    },
+    "progress": {
+      "method": "item/mcpToolCall/progress",
+      "params": { "itemId": "mcp", "message": "正在读取" }
+    },
+    "completed": {
+      "type": "mcpToolCall",
+      "id": "mcp",
+      "server": "fixture",
+      "tool": "lookup",
+      "arguments": { "city": "上海" },
+      "status": "completed",
+      "result": {
+        "content": [{ "type": "text", "text": "fixture-only-result" }],
+        "_meta": { "hidden": "private-transport-metadata" }
+      }
+    }
+  },
+  {
+    "start": {
+      "type": "webSearch",
+      "id": "web",
+      "query": "上海天气",
+      "action": { "type": "openPage", "url": "https://example.invalid/weather" }
+    },
+    "completed": {
+      "type": "webSearch",
+      "id": "web",
+      "query": "上海天气",
+      "action": { "type": "openPage", "url": "https://example.invalid/weather" },
+      "results": null
+    }
+  },
+  {
+    "start": { "type": "fileChange", "id": "patch", "status": "inProgress", "changes": [] },
+    "progress": {
+      "method": "item/fileChange/patchUpdated",
+      "params": {
+        "itemId": "patch",
+        "changes": [{ "path": "fixture.txt", "diff": "+fixture", "kind": { "type": "add" } }]
+      }
+    },
+    "completed": {
+      "type": "fileChange",
+      "id": "patch",
+      "status": "completed",
+      "changes": [{ "path": "fixture.txt", "diff": "+fixture", "kind": { "type": "add" } }]
+    }
+  },
+  {
+    "start": { "type": "imageView", "id": "view", "path": "fixture.png" },
+    "completed": { "type": "imageView", "id": "view", "path": "fixture.png" }
+  },
+  {
+    "start": { "type": "sleep", "id": "sleep", "durationMs": 10 },
+    "completed": { "type": "sleep", "id": "sleep", "durationMs": 10 }
+  },
+  {
+    "start": { "type": "imageGeneration", "id": "image", "status": "in_progress", "result": "" },
+    "completed": {
+      "type": "imageGeneration",
+      "id": "image",
+      "status": "completed",
+      "result": "fixture-output",
+      "savedPath": "generated.png"
+    }
+  },
+  {
+    "start": {
+      "type": "hookPrompt",
+      "id": "hook",
+      "fragments": [{ "hookRunId": "hook-run", "text": "private-hook-instructions" }]
+    },
+    "completed": {
+      "type": "hookPrompt",
+      "id": "hook",
+      "fragments": [{ "hookRunId": "hook-run", "text": "private-hook-instructions" }]
+    }
+  },
+  {
+    "start": { "type": "enteredReviewMode", "id": "review-in", "review": "开始审阅" },
+    "completed": { "type": "enteredReviewMode", "id": "review-in", "review": "开始审阅" }
+  },
+  {
+    "start": { "type": "exitedReviewMode", "id": "review-out", "review": "审阅记录" },
+    "completed": { "type": "exitedReviewMode", "id": "review-out", "review": "审阅记录" }
+  },
+  {
+    "start": {
+      "type": "collabAgentToolCall",
+      "id": "collab",
+      "tool": "wait",
+      "status": "inProgress",
+      "senderThreadId": "fixture-thread",
+      "receiverThreadIds": ["child-thread"],
+      "agentsStates": {}
+    },
+    "completed": {
+      "type": "collabAgentToolCall",
+      "id": "collab",
+      "tool": "wait",
+      "status": "completed",
+      "senderThreadId": "fixture-thread",
+      "receiverThreadIds": ["child-thread"],
+      "agentsStates": { "child-thread": { "status": "completed", "message": "runtime-reported" } }
+    }
+  },
+  {
+    "start": {
+      "type": "subAgentActivity",
+      "id": "activity",
+      "agentPath": "/fixture",
+      "agentThreadId": "child-thread",
+      "kind": "started"
+    },
+    "completed": {
+      "type": "subAgentActivity",
+      "id": "activity",
+      "agentPath": "/fixture",
+      "agentThreadId": "child-thread",
+      "kind": "started"
+    }
+  }
+]

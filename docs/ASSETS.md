@@ -4,14 +4,18 @@
 
 | 资源 | 当前形象 | 来源与范围 |
 | --- | --- | --- |
+| `echidna-black-chibi.png` | Re:0 爱姬多娜黑发 Q 版，黑洋装与白蝴蝶发饰，九种动作 | 2026-10-18 内置 image_gen 生成同人角色，黑发为用户指定改色，不声称官方黑发设定。当前 Echidna 默认形象；1254×1254 透明 PNG，提示词与实际裁切坐标归档 |
 | `echidna.webp` | 银白/淡紫长发、蝴蝶发饰、白色短外套、黑色百褶裙、运动鞋；四个动作 | 根据用户选定参考生成的设计素材，不声称取得参考图的额外版权授权 |
+| `echidna-extra-actions.png` | 同一形象新增阅读、指向、等待、交流四姿态 | 2026-10-18 使用内置 image_gen，以既有 echidna.webp 为身份参考生成；1024×1536，透明 PNG，2×2 等分，提示词随素材保存 |
+| `echidna-thinking-slim.png` | 按太阳穴苦思、鼓腮托脸、闭眼攥拳；按原立绘修正为窄肩腰与修长腿部 | 2026-10-18 使用内置 image_gen，以原 echidna.webp 为比例权威重新生成；1536×1024，透明 PNG，三等分。提示词随素材保存，旧 echidna-thinking.png 留作对照，不再加载 |
+| `echidna-props-expressions.png` | 咬笔仰头思考、眨眼查阅、鼓腮比较方案；带自然腮红 | 2026-10-18 内置 image_gen 基于道具图集定向修改面部表情，保留纤细比例、服装与握持；1536×1024 透明 PNG，三等分；旧 echidna-props.png 留作对照，不再加载 |
 | `deepseek.webp` | 海洋蓝主题完整立绘及 Q 版 | 新生成的 DeepSeek 鲸鱼主题拟人设计，非官方角色 |
 | `deepseek-actions.webp` | 待命、思考、工作、报告四动作 | 同一原创拟人设计的动作图集，非官方素材 |
 | `claude.webp` | 暖橙学者主题立绘与 Q 版 | 新生成的虚构角色，非 Anthropic 官方角色或背书 |
 | `archivist.webp` | Re:Zero 碧翠丝，抱书与翻书 | AI 生成同人形象，当前用于用户要求的私人设计原型；未确认商业分发授权 |
 
-文件名、尺寸、哈希、原型内对应键、动作帧和生成方式见 `design/assets/manifest.json`。这些文件来自本次设计工作已有素材；没有重新抓取或生成美术。
+文件名、尺寸、哈希、对应键、动作帧和生成方式见 `design/assets/manifest.json`。原五份素材来自已归档原型，保持不变；新增动作单独记录来源。
 
-Lucide 图标固定为 `lucide@0.468.0` 的 UMD 文件，位于 `design/prototype/vendor/`，原许可证及来源随文件保留。Excalidraw 和 diagram-design 仅作为设计参考，没有复制它们的代码。
+归档原型的 Lucide 图标固定为 `lucide@0.468.0` 的 UMD 文件，位于 `design/prototype/vendor/`，原许可证及来源随文件保留。P1 应用使用 `lucide-react@1.58.0`，版本锁定在 package-lock 中。Excalidraw 和 diagram-design 仅作为设计参考，没有复制它们的代码。
 
 新仓库默认私有，未增加整体开源许可，也未替第三方素材授予新许可。面向公开发行时，确认素材使用范围或换成可分发的资源；外观资源可以替换，执行状态与模型能力不能依赖某个角色身份。
