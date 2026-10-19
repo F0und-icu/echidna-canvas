@@ -6,6 +6,23 @@ Echidna Canvas 是一个单用户、本地运行的 Web Agent 工作台。人物
 
 **当前实现：P3b 真实 Agent 与任务图，以及用户追加的项目档案和 MCP 接入。** 已接入 Codex app-server；其他 harness、AI 自动委派和跨进程 Resume 尚未实现。最近一次真实长任务使用 **Codex 0.163.0 / gpt-6.1-sol**，核心执行与分支隔离已验证，长图在窄窗口中的整体可读性仍未通过。详见 [项目状态](docs/STATUS.md) 与 [2026-10-19 验收记录](docs/LONG_TASK_ACCEPTANCE_20261019.md)。
 
+[使用指南](docs/USER_GUIDE.md) · [项目思想](docs/PHILOSOPHY.md) · [截图与来源](docs/screenshots/README.md)
+
+[![从任务片段输入另一个想法，开启独立支线](docs/screenshots/fragment-branch.png)](docs/screenshots/fragment-branch.png)
+
+实际界面：选择一个工具片段，在「另一个想法 · 独立支线」中输入。截图中的文字仅用于展示填写方式，没有发送。图片保留 Retina 原始像素的无损 PNG，点击查看原图。
+
+## 项目思想
+
+长任务需要人能随时看懂进展、检查来源、纠正方向，并保留另一种想法。Echidna Canvas 将这些操作放到同一张画布上：
+
+- **让任务沿记录生长**：输入、材料、工具回执、公开决策和结果形成可回看的路径，原文按需展开。
+- **让想法从具体位置分开**：从片段处创建独立对话，清楚保留共同前缀和后续分歧。
+- **让能力与项目显式连接**：Agent、项目档案和 MCP 是不同对象，通过项目区域、文件版本线和配置绑定线说明关系。
+- **让操作与事实各有归属**：画布负责组织视图，运行时负责执行记录；未知结果持续可见，拖动和刷新不重派发。
+
+人物用于提供对话入口和表达已记录的状态，角色外观与模型能力独立。设计取舍和当前实现边界见 [项目思想](docs/PHILOSOPHY.md)。
+
 ## 已有能力
 
 - **独立 Agent**：创建时选择项目和 harness，自动读取 Codex 的模型、思考强度与支持的原生配置；每个 Agent 使用独立 Session 和模型状态。
@@ -20,10 +37,10 @@ Echidna Canvas 是一个单用户、本地运行的 Web Agent 工作台。人物
 
 需要 **Node.js 24+、npm**。真实模式还需要本机可运行的 Codex；最近验证版本为 0.163.0。
 
-当前应用实现位于 `codex/p1-offline-canvas` 分支，`main` 保留初始设计基线。仓库为私有，需要有访问权限的 GitHub 账户。
+应用实现位于 `main`。仓库为私有，需要有访问权限的 GitHub 账户。
 
 ```sh
-git clone --branch codex/p1-offline-canvas https://github.com/F0und-icu/echidna-canvas.git
+git clone https://github.com/F0und-icu/echidna-canvas.git
 cd echidna-canvas
 npm ci
 npm run dev
@@ -152,6 +169,9 @@ docs/         架构、阶段计划、状态和验收记录
 
 | 文档 | 用途 |
 | --- | --- |
+| [使用指南](docs/USER_GUIDE.md) | 从启动到片段分支、纠正、文件修改和 MCP 的操作步骤与截图 |
+| [项目思想](docs/PHILOSOPHY.md) | 长任务、人参与、上下文分支、空间关系与事实边界 |
+| [截图与来源](docs/screenshots/README.md) | 无损原图、内容说明和捕获方式 |
 | [当前状态](docs/STATUS.md) | 实际完成范围、验证结果与限制 |
 | [开发计划](docs/DEVELOPMENT_PLAN.md) | 阶段依赖、交付物与验收门槛 |
 | [架构](docs/ARCHITECTURE.md) · [交互契约](docs/INTERACTION_CONTRACT.md) | 数据归属、命令、事件和来源边界 |
