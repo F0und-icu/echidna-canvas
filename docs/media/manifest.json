@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "imageSize": [
+    1600,
+    1000
+  ],
+  "originals": {
+    "fragment-branch": {
+      "path": "docs/screenshots/fragment-branch.png",
+      "width": 1447,
+      "height": 1448,
+      "sha256": "8a18412362a53e6eee0da9a24966702b2a8ae7ddc9d3add8c6aefac80cf5de3f"
+    },
+    "create-agent": {
+      "path": "docs/screenshots/create-agent.png",
+      "width": 1447,
+      "height": 1448,
+      "sha256": "85175684a72f095bbad5c94945e47f2156d7b4c8c13373960ab4f884f2a0f919"
+    },
+    "file-history-diff": {
+      "path": "docs/screenshots/file-history-diff.png",
+      "width": 1447,
+      "height": 1448,
+      "sha256": "a963c61dd934f618258f37460c0ae8118eb2863ecfe87abd903ab2bb96621983"
+    },
+    "mcp-config": {
+      "path": "docs/screenshots/mcp-config.png",
+      "width": 1447,
+      "height": 1448,
+      "sha256": "c9a503e7831c7dad69fda852aacc08d67f7953ee4a6e99aa458805d014680eea"
+    },
+    "conversation-controls": {
+      "path": "docs/screenshots/conversation-controls.png",
+      "width": 1447,
+      "height": 1448,
+      "sha256": "ccee7a77db7e81c4b3f209046955d4f833de8087453fa8efc70b77bee7c9f264"
+    }
+  },
+  "images": [
+    {
+      "path": "docs/media/fragment-branch.png",
+      "source": "docs/screenshots/fragment-branch.png",
+      "crop": [
+        725,
+        295,
+        680,
+        725
+      ],
+      "kind": "annotated-native-screenshot"
+    },
+    {
+      "path": "docs/media/create-agent.png",
+      "source": "docs/screenshots/create-agent.png",
+      "crop": [
+        575,
+        410,
+        820,
+        860
+      ],
+      "kind": "annotated-native-screenshot"
+    },
+    {
+      "path": "docs/media/file-history-diff.png",
+      "source": "docs/screenshots/file-history-diff.png",
+      "crop": [
+        620,
+        590,
+        775,
+        450
+      ],
+      "kind": "annotated-native-screenshot"
+    },
+    {
+      "path": "docs/media/mcp-config.png",
+      "source": "docs/screenshots/mcp-config.png",
+      "crop": [
+        725,
+        295,
+        680,
+        610
+      ],
+      "kind": "annotated-native-screenshot"
+    },
+    {
+      "path": "docs/media/conversation-controls.png",
+      "source": "docs/screenshots/conversation-controls.png",
+      "crop": [
+        725,
+        295,
+        680,
+        725
+      ],
+      "kind": "annotated-native-screenshot"
+    }
+  ],
+  "animation": {
+    "kind": "illustrated-contract-explainer",
+    "duration": 18,
+    "fps": 12,
+    "width": 1600,
+    "height": 1000,
+    "chapters": [
+      {
+        "at": 0,
+        "title": "先保留一段共同经历",
+        "detail": "输入、材料与工具回执形成公开记录。"
+      },
+      {
+        "at": 3,
+        "title": "在片段处，提出另一个想法",
+        "detail": "选择一个已记录的起点，再写下替代方向。"
+      },
+      {
+        "at": 6,
+        "title": "从这里创建独立支线",
+        "detail": "支线继承截至此处的公开记录。"
+      },
+      {
+        "at": 9,
+        "title": "主线继续，支线独立探索",
+        "detail": "主线后来的对话不会混入支线上下文。"
+      },
+      {
+        "at": 13,
+        "title": "分别保留两条路线的结果",
+        "detail": "对话隔离；共享文件与外部状态仍是当前版本。"
+      }
+    ],
+    "gif": "docs/media/context-branch.gif",
+    "video": "docs/media/context-branch.mp4",
+    "audio": false
+  }
+}
