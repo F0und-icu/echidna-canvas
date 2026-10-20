@@ -2,7 +2,7 @@
 
 本文对应当前 `main` 实现。先启动前端，再选择离线夹具或真实 Codex 后端；完整安装命令见 [README](../README.md#快速开始)。截图来自实际应用和公开虚构验收材料，点击图片可以查看原始像素的无损 PNG。
 
-初次了解功能，可先看 [片段分支录屏](media/ui-branch.mp4)、[文件修改录屏](media/ui-files.mp4) 或 [统一展示页](media/index.html)。录屏使用独立画布和离线协议示例；文件修改实际写入公开样本。详细参数与保存位置见 [配置说明](CONFIGURATION.md)。
+初次了解功能，可先看 [真实项目记录浏览](media/project/project-tour.mp4)、[文件与版本浏览](media/project/project-files.mp4) 或 [全部实屏](media/index.html)。新素材为完整 1920×1080 应用界面，读取已有真实 Codex 任务与实际文件历史；拍摄没有重新执行任务。详细参数与保存位置见 [配置说明](CONFIGURATION.md)。
 
 ## 1. 启动与第一次体验
 
@@ -34,9 +34,9 @@ npm run dev:codex
 5. 选择模型和思考强度；名称会自动生成，形象与描述可展开修改。确认创建后，人物和项目档案同时进入项目区域。
 6. 点击人物打开对话，输入任务并点击「发送」。`Enter` 发送，`Shift + Enter` 换行。创建空会话本身不启动模型回合。
 
-[![自动选择 harness、项目档案和模型](media/ui-create-agent-poster.png)](media/clean/create-agent.png)
+[![自动选择 harness、项目档案和模型](media/project/create-agent.png)](media/project/create-agent.png)
 
-截图使用协议演示后端，配置按该接入的能力生成；真实 Codex 的思考强度、形象与创建按钮可在面板中查看。角色形象可独立选择，外观不会增加运行时能力。当前可用的真实 harness 为 Codex；离线画布返回固定示例，不理解自定义问题。
+截图使用已连接的真实 Codex，配置按实际模型目录生成；本次取景未创建会话。角色形象可独立选择，外观不会增加运行时能力。当前可用的真实 harness 为 Codex；离线画布返回固定示例，不理解自定义问题。
 
 ## 3. 阅读任务、命令和来源
 
@@ -53,9 +53,9 @@ npm run dev:codex
 3. 点击「发送并开支线」。应用创建独立 Agent，并发送这条新输入。
 4. 在新角色的对话里继续探索；原路线可继续，两边后续对话独立保存。
 
-[![片段处填写另一个想法并开启独立支线](media/ui-branch-poster.png)](media/clean/fragment-branch.png)
+[![片段对话入口与实际工具回执](media/project/terminal.png)](media/project/terminal.png)
 
-截图保留发送前的输入；[操作录屏](media/ui-branch.mp4) 随后实际发送，在离线后端创建独立分支。消息旁还提供「从此消息发送前分支」和「从此回复后分支」：前者预填原消息，后者使用已结束回合的前缀。
+截图展示实际工具节点的支线入口，没有填写或发送新消息。[记录浏览视频](media/project/project-tour.mp4) 随后查看了此前已经完成的独立分支及其结果。消息旁还提供「从此消息发送前分支」和「从此回复后分支」：前者预填原消息，后者使用已结束回合的前缀。
 
 片段分支继承截至所选点的公开记录快照，不继承主线后来的对话。它会使用当前项目文件和工具配置，文件与外部状态不会回到历史时刻；旧工具不会因为分支而重放。
 
@@ -63,7 +63,7 @@ npm run dev:codex
 
 继续同一方向时，在人物对话中选择「继续／纠正当前任务」。需要改变运行中的任务，可先填写纠正草稿，再点击「打断当前任务」；等待原生中断确认后发送纠正。
 
-[![对话中选择继续纠正或开启不同想法的支线](screenshots/conversation-controls.png)](screenshots/conversation-controls.png)
+[![对话中选择继续纠正或开启不同想法的支线](media/project/branch-result.png)](media/project/branch-result.png)
 
 截图中的回合已经结束，所以打断按钮禁用。「开一个不同想法的支线」会使用界面指定的分支点；希望精确选择中间位置时，使用上一节的片段入口。
 
@@ -77,9 +77,9 @@ npm run dev:codex
 4. 打开「修改记录」，展开修改路线选择版本，然后查看「上一版 → 所选版」或「所选版 → 当前文件／当前草稿」。新增、删除和行号分别显示，可跳转差异、显示全文或空白。
 5. 点击「在画布查看路线」返回档案角色与版本连线；画布中的版本节点也能直接打开对应记录。
 
-[![文件历史中的所选版本、比较范围与逐行增删](media/ui-files-poster.png)](media/clean/file-history-diff.png)
+[![文件历史中的所选版本、比较范围与逐行增删](media/project/file-diff.png)](media/project/file-diff.png)
 
-截图选择新公开样本的 v2 与 v1 对比，实际差异为 +3／−1 行；内容区域可独立滚动。[操作录屏](media/ui-files.mp4) 展示实际保存，[版本路线原图](media/clean/file-version-route.png) 展示读取与保存的连接。实线表示手动保存，虚线表示读取时观察到外部变化。
+截图选择既有文件的 v4 与 v3 对比，实际差异为 +3／−2 行；内容区域可独立滚动。[文件录屏](media/project/project-files.mp4) 展示阅读任务报告、切换项目与选择历史版本，[版本路线原图](media/project/file-history.png) 展示读取与保存的连接。本次没有修改文件；实线表示手动保存，虚线表示读取时观察到外部变化。
 
 保存遇到外部变更会报告冲突并保留草稿，读取最新磁盘内容后可继续对照。关闭或切换项目时会检查未保存草稿。版本从首次读取开始积累，当前不导入 Git 历史；文件浏览入口只支持不超过 1 MiB 的 UTF-8 文本。
 
@@ -90,9 +90,7 @@ npm run dev:codex
 3. 创建并放到画布。使用连线工具（`L`）连接目标 Agent，在面板确认应用；也可在接入详情选择 Agent。
 4. 读取实际工具目录，核对工具就绪与认证状态。同一图标可分别绑定不同项目的多个 Agent。
 
-[![独立 MCP 图标与网关地址配置](screenshots/mcp-config.png)](screenshots/mcp-config.png)
-
-截图中的地址是本地验收样本网关，不提供真实 Docker 操作。认证选项及绑定列表位于面板下方。配置修改产生新版本，旧绑定保持原版，需要显式重新应用；应用配置时 Agent 必须已知空闲，底层 Session 会切换并保留原有历史。
+接入详情中的认证选项及绑定列表可按需展开。配置修改产生新版本，旧绑定保持原版，需要显式重新应用；应用配置时 Agent 必须已知空闲，底层 Session 会切换并保留原有历史。本地验收样本网关不提供真实 Docker 操作。
 
 ## 8. 保存、退出和再次打开
 

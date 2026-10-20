@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Echidna Canvas · 功能演示</title>
+  <title>Echidna Canvas · 项目实屏</title>
   <style>
     * {
       box-sizing: border-box;
@@ -16,149 +16,145 @@
         sans-serif;
     }
     main {
-      max-width: 1120px;
+      max-width: 1600px;
       margin: auto;
-      padding: 56px 24px;
-    }
-    .brand {
-      color: #866046;
-      letter-spacing: 0.15em;
-      font-size: 13px;
+      padding: 36px 24px;
     }
     h1 {
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1.3;
+      margin: 0 0 12px;
+      font-size: 36px;
       font-weight: 600;
-      margin: 16px 0;
     }
-    p {
-      max-width: 800px;
-      color: #777266;
+    h2 {
+      margin: 36px 0 12px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    p,
+    figcaption {
+      color: #777268;
     }
     a {
-      color: #536b50;
+      color: #53684f;
     }
     nav {
       display: flex;
-      gap: 24px;
-      margin: 28px 0 40px;
       flex-wrap: wrap;
+      gap: 24px;
+      margin: 24px 0;
     }
     video,
-    figure img {
+    img {
       display: block;
       width: 100%;
-      aspect-ratio: 8/5;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: contain;
       background: #faf8f4;
-      border-radius: 20px;
-      border: 1px solid #d9d2c7;
-    }
-    section {
-      margin: 56px 0;
-    }
-    h2 {
-      font-size: 26px;
-      font-weight: 600;
     }
     figure {
-      margin: 36px 0;
+      margin: 32px 0;
     }
     figcaption {
-      margin-top: 10px;
+      margin: 8px 0;
       font-size: 14px;
-      color: #777266;
     }
     footer {
-      padding: 32px 0;
-      border-top: 1px solid #d9d2c7;
-      color: #777266;
+      padding: 24px 0;
+      border-top: 1px solid #dbd5ca;
     }
   </style>
   <main>
-    <div class="brand">ECHIDNA CANVAS / PRODUCT TOUR</div>
-    <h1>让长任务看得见，<br />让不同想法有各自的路线。</h1>
-    <p>
-      从片段上下文分支，到项目版本和独立 MCP
-      接入。这里汇总实际界面取景与功能讲解，原始无损截图另行保留。
-    </p>
+    <h1>Echidna Canvas · 项目实屏</h1>
+    <p>完整的 1920×1080 应用画面。查看真实 Codex 历史任务、实际文件与图片，不加说明侧栏或裁图。</p>
     <nav>
       <a href="../../README.md">README</a><a href="../USER_GUIDE.md">使用指南</a
-      ><a href="../PHILOSOPHY.md">项目思想</a><a href="README.md">媒体来源</a>
+      ><a href="README.md">来源与拍摄范围</a>
     </nav>
     <section>
-      <h2>实际操作：从片段开启支线</h2>
-      <video controls preload="metadata" poster="ui-branch-poster.png">
-        <source src="ui-branch.mp4" type="video/mp4" />
-        <a href="ui-branch.mp4">打开 MP4</a>。
+      <h2>项目记录：从工具到结论与分支回复</h2>
+      <video controls preload="metadata" poster="project/canvas.png">
+        <source src="project/project-tour.mp4" type="video/mp4" />
+        <a href="project/project-tour.mp4">打开 MP4</a>
+      </video>
+      <p>浏览已有真实任务，不重新执行命令或创建分支。视频末尾保留实际回复的结果段落。</p>
+    </section>
+    <section>
+      <h2>项目档案：报告、切换与版本差异</h2>
+      <video controls preload="metadata" poster="project/file-diff.png">
+        <source src="project/project-files.mp4" type="video/mp4" />
+        <a href="project/project-files.mp4">打开 MP4</a>
       </video>
       <p>
-        17.5 秒实际界面节选，选择片段、输入新方向、发送支线并打开新对话。使用离线协议示例，
-        不调用模型或执行示例命令。<a href="recordings/ui-branch-native.mp4"
-          >未加注解的原始比例录屏</a
-        >。
+        读取真实任务报告，再切换到已有人工文件历史，核对 v3 → v4 的 +3／−2 行；本次没有写入文件。
       </p>
     </section>
     <section>
-      <h2>实际操作：编辑、保存、核对修改</h2>
-      <video controls preload="metadata" poster="ui-files-poster.png">
-        <source src="ui-files.mp4" type="video/mp4" />
-        <a href="ui-files.mp4">打开 MP4</a>。
+      <h2>实际图片产物</h2>
+      <video controls preload="metadata" poster="project/generated-image.png">
+        <source src="project/project-image.mp4" type="video/mp4" />
+        <a href="project/project-image.mp4">打开 MP4</a>
       </video>
-      <p>
-        17 秒实际文件操作，保存到独立公开样本，核对 v1 → v2 的 +3／−1 行。
-        <a href="recordings/ui-files-native.mp4">未加注解的原始比例录屏</a>。
-      </p>
+      <p>从原工具记录打开此前 Codex 编程生成的 PNG，完整保留图片预览窗口。</p>
     </section>
     <section>
-      <h2>18 秒了解独立支线</h2>
-      <video controls preload="metadata" poster="context-branch-poster.png">
-        <source src="context-branch.mp4" type="video/mp4" />
-        浏览器不支持内嵌视频，可<a href="context-branch.mp4">打开 MP4</a>。
-      </video>
-      <p>功能示意动画，无音频。展示共同前缀与后续隔离，不代表新增任务录屏。</p>
-    </section>
-    <section>
-      <h2>关键能力</h2>
+      <h2>原生无损截图</h2>
       <figure>
-        <a href="clean/fragment-branch.png"
-          ><img src="ui-branch-poster.png" alt="从任务片段开启独立支线"
-        /></a>
-        <figcaption>01 · 片段支线。点击查看原生 PNG，视频随后实际发送。</figcaption>
+        <a href="project/canvas.png"><img src="project/canvas.png" alt="真实分支的项目画布" /></a>
+        <figcaption>项目画布 · 已有真实 Agent 挂载到独立展示视图。</figcaption>
       </figure>
       <figure>
-        <a href="clean/create-agent.png"
-          ><img src="ui-create-agent-poster.png" alt="选择 harness 与项目档案"
+        <a href="project/terminal.png"
+          ><img src="project/terminal.png" alt="真实命令、工作目录与回执"
         /></a>
-        <figcaption>02 · 同时绑定能力与项目，发送消息后才执行。</figcaption>
+        <figcaption>工具记录 · 通过实际回执查看后续结论。</figcaption>
       </figure>
       <figure>
-        <a href="clean/file-history-diff.png"
-          ><img src="ui-files-poster.png" alt="沿历史版本核对逐行变化"
+        <a href="project/conclusion.png"
+          ><img src="project/conclusion.png" alt="带来源引用的实际结论"
         /></a>
-        <figcaption>03 · 样本实际保存后产生的逐行增删。</figcaption>
+        <figcaption>结论 · 原始公开标注与引用，不补造内部思考。</figcaption>
       </figure>
       <figure>
-        <a href="clean/file-version-route.png"
-          ><img src="ui-version-route-poster.png" alt="沿连接图查看文件版本"
+        <a href="project/branch-result.png"
+          ><img src="project/branch-result.png" alt="独立分支已经返回的回复"
         /></a>
-        <figcaption>04 · 首次读取与手动保存。点击查看未缩放原图。</figcaption>
+        <figcaption>独立对话 · 查看已完成实验的结果与局限。</figcaption>
       </figure>
       <figure>
-        <a href="../screenshots/mcp-config.png"
-          ><img src="mcp-config.png" alt="独立 MCP 接入与版本绑定"
+        <a href="project/project-report.png"
+          ><img src="project/project-report.png" alt="实际项目报告的阅读界面"
         /></a>
-        <figcaption>05 · 早期取景：连接已有网关，按版本应用到各个 Agent。</figcaption>
+        <figcaption>项目报告 · 真实文件内容，只读查看。</figcaption>
       </figure>
       <figure>
-        <a href="../screenshots/conversation-controls.png"
-          ><img src="conversation-controls.png" alt="在对话中纠正方向"
+        <a href="project/file-history.png"
+          ><img src="project/file-history.png" alt="实际文件版本连接图"
         /></a>
-        <figcaption>06 · 早期取景：当前会话纠正与不同想法支线分别操作。</figcaption>
+        <figcaption>版本路线 · 区分手动保存与读取观察。</figcaption>
+      </figure>
+      <figure>
+        <a href="project/file-diff.png"
+          ><img src="project/file-diff.png" alt="实际文件版本逐行增删"
+        /></a>
+        <figcaption>逐行差异 · 既有 v3 与 v4 的真实内容。</figcaption>
+      </figure>
+      <figure>
+        <a href="project/generated-image.png"
+          ><img src="project/generated-image.png" alt="真实 Codex 任务的 PNG 产物预览"
+        /></a>
+        <figcaption>图片 · 来自此前实际任务产物。</figcaption>
+      </figure>
+      <figure>
+        <a href="project/create-agent.png"
+          ><img src="project/create-agent.png" alt="真实 Codex 模型与项目配置"
+        /></a>
+        <figcaption>创建配置 · 实际模型目录，拍摄未提交创建。</figcaption>
       </figure>
     </section>
     <footer>
-      展示图、视频与动画统一为 1600×1000；新录屏与 PNG 原始像素为 1036×1448。
-      保留默认浏览器视口，未修改界面文字或执行状态。离线演示不替代真实模型验收。
+      PNG、GIF 与 MP4 均为完整 1920×1080。<a href="project/manifest.json">来源、时间与哈希</a> ·
+      <a href="README.md">采集帧率及边界</a>
     </footer>
   </main>
 </html>

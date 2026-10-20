@@ -11,18 +11,18 @@
   <a href="docs/STATUS.md">当前状态</a>
 </p>
 
-[![实际操作：从任务片段开启独立支线](docs/media/ui-branch.gif)](docs/media/ui-branch.mp4)
+![Echidna Canvas 的真实项目画布](docs/media/project/canvas.png)
 
 <p align="center">
-  <a href="docs/media/ui-branch.mp4">观看片段分支录屏</a> ·
-  <a href="docs/media/ui-files.mp4">观看文件修改录屏</a> ·
+  <a href="docs/media/project/project-tour.mp4">观看真实项目记录</a> ·
+  <a href="docs/media/project/project-files.mp4">观看文件与版本记录</a> ·
   <a href="docs/media/index.html">本地媒体展示页</a> ·
   <a href="docs/media/README.md">媒体来源与说明</a>
 </p>
 
 人物是对话入口，工具与材料形成可追溯的路径。你可以检查一条命令、在片段中提出另一个想法、对照文件修改，或把独立 MCP 接入连接到需要它的 Agent。
 
-上方为**独立演示画布的实际操作节选**：选择片段、输入想法、发送支线并打开新对话。录制使用离线协议示例，固定回复不调用模型；文件演示会实际保存公开样本。原生无损 PNG 与未加注解的录屏另行保留。
+截图与视频直接来自项目中的实际界面，统一为 **1920×1080**，没有说明侧栏、拼贴或画面裁切。这里展示此前真实 Codex 长任务的分支、回执、报告与图片；本次拍摄只查看既有记录，没有重新执行任务。
 
 ## 功能演示
 
@@ -30,25 +30,40 @@
 
 在一个工具回执处直接输入替代方案，开启新支线。它只继承截至该点的公开记录，原路线后来的对话不会混入。共享文件和外部状态仍是当前版本。
 
-[![选择片段、输入新方向、发送并开启独立支线](docs/media/ui-branch-poster.png)](docs/media/clean/fragment-branch.png)
+[![实际项目：查看命令、结论与分支对话](docs/media/project/project-tour.gif)](docs/media/project/project-tour.mp4)
+
+录屏从画布进入真实命令回执，沿引用查看结论，再打开已经完成的独立分支对话。它展示已有任务的阅读过程；创建支线的操作步骤见 [使用指南](docs/USER_GUIDE.md#4-从中间片段开启不同想法)。
+
+<details>
+<summary>查看完整界面的命令与分支截图</summary>
+
+![真实命令、工作目录与执行回传](docs/media/project/terminal.png)
+
+![已完成的独立分支对话](docs/media/project/branch-result.png)
+
+</details>
 
 ### 创建 Agent 时，把能力与项目一起选好
 
 自动或手动选择已接入的 Codex，读取实际模型目录，同时绑定真实项目档案。每个 Agent 保持独立 Session；发送第一条消息才开始执行。
 
-[![自动连接 harness、选择项目与模型](docs/media/ui-create-agent-poster.png)](docs/media/clean/create-agent.png)
+![真实 Codex 的自动连接、项目、模型与思考强度配置](docs/media/project/create-agent.png)
 
-图中使用已接入的离线协议示例；切换为真实 Codex 后，模型与认证选项来自该 harness。
+截图来自已连接的 Codex 和实际模型目录；拍摄时仅选择配置，没有再次创建会话。
 
 ### 沿版本路线，看清文件改了哪里
 
 项目档案连接真实目录。打开文件、显式保存，或选择一个历史版本查看逐行增删；遇到外部修改时保留草稿并报告冲突。
 
-[![实际编辑、保存与逐行修改记录](docs/media/ui-files.gif)](docs/media/ui-files.mp4)
+![项目档案中的真实版本与逐行差异](docs/media/project/file-diff.png)
 
-[![文件历史与逐行修改位置](docs/media/ui-files-poster.png)](docs/media/clean/file-history-diff.png)
+[文件录屏](docs/media/project/project-files.mp4) 展示打开真实任务报告、切换项目和选择既有版本；上图为手动保存历史的 v3 → v4，显示 +3／−2 行。本次没有修改该文件。[查看版本连线](docs/media/project/file-history.png)。
 
-本次独立样本实际生成 v1 → v2，显示 +3／−1 行；[查看版本连线原图](docs/media/clean/file-version-route.png)。
+### 在任务记录里，直接查看实际产物
+
+![Codex 真实任务生成的图片在应用中完整预览](docs/media/project/generated-image.png)
+
+图中流程图由此前 Codex 任务编程生成，通过实际工具记录打开。[观看图片预览操作](docs/media/project/project-image.mp4)，或 [查看任务报告的阅读界面](docs/media/project/project-report.png)。
 
 <details>
 <summary><strong>把 MCP 作为独立能力，连接到不同项目</strong></summary>
@@ -68,7 +83,7 @@ Docker 图标代表配置的 MCP 网关，不安装 Docker 或启动 daemon。�
 
 </details>
 
-所有展示图、GIF、MP4 与海报统一为 **1600×1000（8:5）**。点击静态展示图查看 **1036×1448 的原生无损 PNG**；[媒体展示页](docs/media/index.html) 可播放视频、打开原始录屏，也保留 [18 秒上下文示意动画](docs/media/context-branch.mp4)。完整步骤见 [使用指南](docs/USER_GUIDE.md)。
+PNG 保留原始截图像素，视频保留完整应用画面；长记录通过应用自身的滚动与缩放阅读。[媒体展示页](docs/media/index.html) 提供全部截图与视频，[媒体说明](docs/media/README.md) 记录来源及拍摄范围。
 
 ## 快速开始
 
@@ -127,15 +142,15 @@ npm run format:check
 
 浏览器测试、原生 Codex 离线集成、数据保存边界和构建体积提醒见 [配置与检查](docs/CONFIGURATION.md#开发检查)。
 
-| 文档                                                                      | 内容                                           |
-| ------------------------------------------------------------------------- | ---------------------------------------------- |
-| [使用指南](docs/USER_GUIDE.md)                                            | 创建、片段分支、纠正、文件修改、MCP 与常见情况 |
-| [配置说明](docs/CONFIGURATION.md)                                         | Codex 路径、认证、权限默认值、存储与开发检查   |
-| [项目思想](docs/PHILOSOPHY.md)                                            | 长任务中的人参与、上下文边界与事实归属         |
-| [媒体说明](docs/media/README.md) · [原始截图](docs/screenshots/README.md) | 图文取景、功能动画、来源与复现方式             |
-| [架构](docs/ARCHITECTURE.md) · [交互契约](docs/INTERACTION_CONTRACT.md)   | 数据、命令、事件与来源边界                     |
-| [计划](docs/DEVELOPMENT_PLAN.md) · [验收场景](docs/ACCEPTANCE.md)         | 阶段依赖、完成门槛与实际状态                   |
-| [设计原则](design/DESIGN_PRINCIPLES.md) · [素材说明](docs/ASSETS.md)      | 图形语言、配色、角色及使用范围                 |
+| 文档                                                                    | 内容                                           |
+| ----------------------------------------------------------------------- | ---------------------------------------------- |
+| [使用指南](docs/USER_GUIDE.md)                                          | 创建、片段分支、纠正、文件修改、MCP 与常见情况 |
+| [配置说明](docs/CONFIGURATION.md)                                       | Codex 路径、认证、权限默认值、存储与开发检查   |
+| [项目思想](docs/PHILOSOPHY.md)                                          | 长任务中的人参与、上下文边界与事实归属         |
+| [媒体说明](docs/media/README.md) · [项目实屏](docs/media/index.html)    | 完整项目截图、实际记录浏览与来源               |
+| [架构](docs/ARCHITECTURE.md) · [交互契约](docs/INTERACTION_CONTRACT.md) | 数据、命令、事件与来源边界                     |
+| [计划](docs/DEVELOPMENT_PLAN.md) · [验收场景](docs/ACCEPTANCE.md)       | 阶段依赖、完成门槛与实际状态                   |
+| [设计原则](design/DESIGN_PRINCIPLES.md) · [素材说明](docs/ASSETS.md)    | 图形语言、配色、角色及使用范围                 |
 
 ## 参考与归属
 
