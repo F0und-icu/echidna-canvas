@@ -1,0 +1,522 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-20",
+  "canvas": "产品演示 · 从片段开启支线",
+  "backend": "fixture",
+  "sampleProject": "/private/tmp/echidna-canvas-media-demo",
+  "capture": "Page.captureScreenshot, native PNG, DPR 2, default viewport",
+  "originalSize": [1036, 1448],
+  "displaySize": [1600, 1000],
+  "screenshots": [
+    {
+      "path": "docs/media/clean/fragment-branch.png",
+      "sha256": "9192dafc8e5bbbc0c47f4c9a71bfea11208c234e73c78a04b83c98ede4bd0f7f"
+    },
+    {
+      "path": "docs/media/clean/create-agent.png",
+      "sha256": "83fd70447550118c25c4a7ba0fa69cbc078558e950dbc86fdcdc0f528a9c5a73"
+    },
+    {
+      "path": "docs/media/clean/file-history-diff.png",
+      "sha256": "42fd2b84229d77a72256b7ddd4e16c879a14bdaf0471ce41f08c5120a91238bf"
+    },
+    {
+      "path": "docs/media/clean/file-version-route.png",
+      "sha256": "38e72c1ef96edd6c98972451b4dd2f00c01c7bedc616f8ef51f26f79670bced5"
+    },
+    {
+      "path": "docs/media/clean/file-preview.png",
+      "sha256": "33b12a36bed3ed94c677de919189675d08c355f65d6d556994ab9ba2ac140fa6"
+    },
+    {
+      "path": "docs/media/clean/branch-conversation.png",
+      "sha256": "5624b46fb98e366ca8840fb1f8bf086b27649ced640bf29493b46961da1bb8f0"
+    }
+  ],
+  "recordings": [
+    {
+      "path": "docs/media/recordings/ui-branch-native.mp4",
+      "sha256": "f701dc16cd038a07a7b4c71a3d43a710eb74d6911752790d4e583c9a330b1e4f",
+      "size": [1036, 1448],
+      "duration": 17.5,
+      "fps": 12,
+      "sampling": "native PNG frames sampled at approximately 2 fps; duplicate frames only for 12 fps playback",
+      "edits": "Cuts between excerpts; recorded time preserved within each excerpt; no synthetic UI frames or interpolated motion",
+      "chapters": [
+        {
+          "sourceClip": 3,
+          "label": "打开工具片段",
+          "from": 0,
+          "to": 4,
+          "timelineStart": 0,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "e93f1a2dc308271fb9b73774146df1b634e8470d831da7c72653f592ec342dfa"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 420,
+              "sha256": "76b1285a41662949eccf71e083893246a307138683173be24e87cc74ed58dc0f"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 929,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1340,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 1843,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2350,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 2783,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3218,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0008.png",
+              "ms": 3656,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0009.png",
+              "ms": 3971,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            }
+          ]
+        },
+        {
+          "sourceClip": 4,
+          "label": "在片段提出另一个想法",
+          "from": 0,
+          "to": 5.5,
+          "timelineStart": 4,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "ac36091f25b9b45dca6985c6aa64b5524b909e35e5deff67810676c837f9facc"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 463,
+              "sha256": "6596b39261edfcdd897e5bdfba5ad004ed0ab2e6eaf0ce3e8598860b409ff2aa"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 887,
+              "sha256": "3ce9c010b541fb06a7e161590e3639245ffe6941b3c9738785d5c14a77c73b2b"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1303,
+              "sha256": "83110a249eb4ad5f3aee1afddd97b91132b835c589e05f463a43454726325236"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 1711,
+              "sha256": "b0bd91dddb02a5e5a1ca1646f8ec086de0853344eec231da561e88e54a46faf2"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2118,
+              "sha256": "26f22d110201980d375c20d4dc8ff3e0a921bc37d8d73b50d69e7212a9f195f2"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 2516,
+              "sha256": "26f22d110201980d375c20d4dc8ff3e0a921bc37d8d73b50d69e7212a9f195f2"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3018,
+              "sha256": "9192dafc8e5bbbc0c47f4c9a71bfea11208c234e73c78a04b83c98ede4bd0f7f"
+            },
+            {
+              "file": "frame-0008.png",
+              "ms": 3520,
+              "sha256": "26f22d110201980d375c20d4dc8ff3e0a921bc37d8d73b50d69e7212a9f195f2"
+            },
+            {
+              "file": "frame-0009.png",
+              "ms": 3977,
+              "sha256": "9192dafc8e5bbbc0c47f4c9a71bfea11208c234e73c78a04b83c98ede4bd0f7f"
+            },
+            {
+              "file": "frame-0010.png",
+              "ms": 4403,
+              "sha256": "26f22d110201980d375c20d4dc8ff3e0a921bc37d8d73b50d69e7212a9f195f2"
+            },
+            {
+              "file": "frame-0011.png",
+              "ms": 4783,
+              "sha256": "9192dafc8e5bbbc0c47f4c9a71bfea11208c234e73c78a04b83c98ede4bd0f7f"
+            },
+            {
+              "file": "frame-0012.png",
+              "ms": 5179,
+              "sha256": "9422d3f141b423f85403fc5fe7da9920b54882ecdb99cf77f90cc23f314f0d1e"
+            }
+          ]
+        },
+        {
+          "sourceClip": 5,
+          "label": "发送并开启独立支线",
+          "from": 0,
+          "to": 5,
+          "timelineStart": 9.5,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "26f22d110201980d375c20d4dc8ff3e0a921bc37d8d73b50d69e7212a9f195f2"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 419,
+              "sha256": "cdc13cab1a68e2bf52c57fd4c658da40bcc6c5aacb4ae677728f0469be593be5"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 853,
+              "sha256": "6e2be2686149495f26826ae67115ea903f209bdde7247a91f1792dddb8bca8ba"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1211,
+              "sha256": "6e2be2686149495f26826ae67115ea903f209bdde7247a91f1792dddb8bca8ba"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 1659,
+              "sha256": "fae214236d97e9164a919b6f48ea611bb29470e51787cec265770bbf9af53d59"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2099,
+              "sha256": "fae214236d97e9164a919b6f48ea611bb29470e51787cec265770bbf9af53d59"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 2604,
+              "sha256": "fae214236d97e9164a919b6f48ea611bb29470e51787cec265770bbf9af53d59"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3108,
+              "sha256": "2f608d12bbf8488fdc3e5733eb2b7bbe1cf3358341d8798ce556ae079795e591"
+            },
+            {
+              "file": "frame-0008.png",
+              "ms": 3528,
+              "sha256": "2f608d12bbf8488fdc3e5733eb2b7bbe1cf3358341d8798ce556ae079795e591"
+            },
+            {
+              "file": "frame-0009.png",
+              "ms": 3933,
+              "sha256": "2f608d12bbf8488fdc3e5733eb2b7bbe1cf3358341d8798ce556ae079795e591"
+            },
+            {
+              "file": "frame-0010.png",
+              "ms": 4335,
+              "sha256": "2f608d12bbf8488fdc3e5733eb2b7bbe1cf3358341d8798ce556ae079795e591"
+            },
+            {
+              "file": "frame-0011.png",
+              "ms": 4723,
+              "sha256": "2f608d12bbf8488fdc3e5733eb2b7bbe1cf3358341d8798ce556ae079795e591"
+            }
+          ]
+        },
+        {
+          "sourceClip": 6,
+          "label": "查看分支对话来源",
+          "from": 0,
+          "to": 3,
+          "timelineStart": 14.5,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "3b9e6339a28af865c8363d0ab2595529e37e227825e75953cfa5bab2a3a589c6"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 454,
+              "sha256": "18e9457aaff39b3533cd00ebe152b0f8f53316b51632f20a1bfd2714c93b214a"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 884,
+              "sha256": "8e9e8aa54d0eb71c83491796e210d85e5e0262b9239db2c236b52658d7c6968e"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1290,
+              "sha256": "b73682e44dbf3a7acd6e9600e4d14469fb450464f6d50fb80b460281eaf3c267"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 1720,
+              "sha256": "68970d2fe22f7254eba827a25ef9bec790f116f30bdc4d7693de366acaabd16b"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2156,
+              "sha256": "2feeb2bf5c686c1cc3fe359089955ae94f1d55760ac70276dffde6b4333b24eb"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 2664,
+              "sha256": "da695fa8329c5ade9bd8c830589348692f07a51bcc97968049f228a107745e45"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/media/recordings/ui-files-native.mp4",
+      "sha256": "7dde47b1a2bf694d873cd25cc859be2b2daaa48db89f01916737e28090136d4e",
+      "size": [1036, 1448],
+      "duration": 17,
+      "fps": 12,
+      "sampling": "native PNG frames sampled at approximately 2 fps; duplicate frames only for 12 fps playback",
+      "edits": "Cuts between excerpts; recorded time preserved within each excerpt; no synthetic UI frames or interpolated motion",
+      "chapters": [
+        {
+          "sourceClip": 8,
+          "label": "打开项目文件",
+          "from": 0,
+          "to": 4,
+          "timelineStart": 0,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "3d91d9c9bdc7dd917c49e7e396b29a0f22f9e21e87d1ba5a0a737275313abbda"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 499,
+              "sha256": "57930e39a7d21b0c86a1c8666f2ae8aba4f55946d48b444dffdfb0645e2fd285"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 1036,
+              "sha256": "f7f63f8b9ac1be8932e8e708096d3521791b367cfb7c2878d32c42381a23d22d"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1549,
+              "sha256": "9642d56668e02875997f0744e2b51dfd9efe9e0d08d5a9a5987c27f26f6dcef6"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 2055,
+              "sha256": "5e052df0623c2db6821cef79a7942a168d15e250b4a1b53b3fc8be4cfb448634"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2566,
+              "sha256": "a17bd86d11dc2907cb22697c52713f07d992e61971997925a45eff17be9ae4ff"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 3072,
+              "sha256": "978dd43a43a64995d222e7c37c6e6f39d6994035fdfa56f3ad932ce3ab7b5aea"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3579,
+              "sha256": "7921fde5e97bcde07d84ded1ebeb4962a05deb2565a8ecbb09634d1a660698a7"
+            }
+          ]
+        },
+        {
+          "sourceClip": 9,
+          "label": "修改项目笔记并保存",
+          "from": 0,
+          "to": 5,
+          "timelineStart": 4,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "d34981d582e065b2550328952e962dbf2746a4ab2ed548d01c006badf18ccd59"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 471,
+              "sha256": "2b9e8374dc9d5f8b002837f39bad14dd4621a6971509656388c905d456809224"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 994,
+              "sha256": "f16cb50635927d949fbf58e07332439ce061da2ad5f2201e59747a7886c0c051"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1503,
+              "sha256": "c1000353e8289f5b3c48015ab00b36a3294430770f77540770378273835eeae6"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 2011,
+              "sha256": "147aa548d42362485e7d7f3a02c65da0383104336287271da13438788474767f"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2512,
+              "sha256": "31ac31916d816d25430cc9f0db8776cacf2f534436b387e1fa8de0ee619357b8"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 3020,
+              "sha256": "bdd3e74ace86745567bdf95c5a26bcb031d87296a7d174a71f4f83d3d5ef3150"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3433,
+              "sha256": "e1d2568e0e68dce207c1ff13cc67d635523a396fa34fc747e933c8faedbabd60"
+            },
+            {
+              "file": "frame-0008.png",
+              "ms": 3860,
+              "sha256": "740b40a599e84230b3a30546a94897b9653cce583c68da5180958a61a721bbf0"
+            },
+            {
+              "file": "frame-0009.png",
+              "ms": 4366,
+              "sha256": "6544ab98a4a7aec48ef5301fbc94336eb56a43ea0027a01bafb5969e894b5951"
+            },
+            {
+              "file": "frame-0010.png",
+              "ms": 4881,
+              "sha256": "a63d0afb022e706c51fc347f31578130bdcbfa1a25bb1e0aecab814714672db9"
+            }
+          ]
+        },
+        {
+          "sourceClip": 10,
+          "label": "查看版本路线与差异",
+          "from": 0,
+          "to": 4,
+          "timelineStart": 9,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "1a596a4ec1ab3e0d5361037b4ccc05ab0e024c531ad9bab9c7305740ed0698ad"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 479,
+              "sha256": "9da0c096f81793ff61173ea41469e5aaf08381c11e2a28f03017f951bd8f3373"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 1016,
+              "sha256": "753bfc96d9eb355c564ecd375dd27edfaab2549498f470498e50c04f5dd9a166"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1518,
+              "sha256": "821760070f180815450162aa125b2e83e16b81d8ef7576f9cca71b2f1c23e041"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 2066,
+              "sha256": "b2aed2906fb9012bb88ca006d36c934bda20a60b676aec978a19bded12d87ed6"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2565,
+              "sha256": "10be181ba20394a452c2135536a03800e3fb7e3a72bc7012b989903ecf73d081"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 3108,
+              "sha256": "ddaef785efd0cc67ed9897873b0a7b37f2abe29b39a4c6fabbdf4d73759b2e80"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3597,
+              "sha256": "53c751215a78d8e3b65fcb4d73937f43c400e4f7c4e94dc41c62616f548db22c"
+            }
+          ]
+        },
+        {
+          "sourceClip": 11,
+          "label": "定位新增的支线说明",
+          "from": 0,
+          "to": 4,
+          "timelineStart": 13,
+          "frames": [
+            {
+              "file": "frame-0000.png",
+              "ms": 0,
+              "sha256": "928a636e9d607c8b09e1e52e3301aab52ed6c7d1f5e781192e5afb77ed36d2ab"
+            },
+            {
+              "file": "frame-0001.png",
+              "ms": 509,
+              "sha256": "d9cf725be782ce802a263174925e60e2067de79bddf90a3b5eb9dd3276104862"
+            },
+            {
+              "file": "frame-0002.png",
+              "ms": 958,
+              "sha256": "5f93309eec15c5df837f7f135a6712e22c3e6d453b03dadd5a2277c21b19df18"
+            },
+            {
+              "file": "frame-0003.png",
+              "ms": 1459,
+              "sha256": "ad8445a0fb93cf38dfddb210777c873e32799ac123673fea1f9e29c0da0c3180"
+            },
+            {
+              "file": "frame-0004.png",
+              "ms": 1958,
+              "sha256": "c60fb7d698761d870636df9abf850409ceeeaff5f7eb013ca1864560b1713665"
+            },
+            {
+              "file": "frame-0005.png",
+              "ms": 2464,
+              "sha256": "5dad77b116fadeaeb41cf6ec4ab3ec29ee36f4d444223ee43e2b15e506be6050"
+            },
+            {
+              "file": "frame-0006.png",
+              "ms": 2881,
+              "sha256": "23a25396f4788113d8b45f56b436578a024029d0ffea4deb4925d298f3de09ca"
+            },
+            {
+              "file": "frame-0007.png",
+              "ms": 3391,
+              "sha256": "b5548893c444bd303ef823ccfd7bcdf1f5decc8b13461096226ee47f193d7a99"
+            },
+            {
+              "file": "frame-0008.png",
+              "ms": 3854,
+              "sha256": "cb405a652c270dba17132aafd9fbe6f618f80a9ae31dded801ecc57773e609f9"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

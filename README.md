@@ -11,17 +11,18 @@
   <a href="docs/STATUS.md">当前状态</a>
 </p>
 
-[![18 秒了解：从任务片段开启独立支线](docs/media/context-branch.gif)](docs/media/context-branch.mp4)
+[![实际操作：从任务片段开启独立支线](docs/media/ui-branch.gif)](docs/media/ui-branch.mp4)
 
 <p align="center">
-  <a href="docs/media/context-branch.mp4">观看 18 秒 MP4</a> ·
+  <a href="docs/media/ui-branch.mp4">观看片段分支录屏</a> ·
+  <a href="docs/media/ui-files.mp4">观看文件修改录屏</a> ·
   <a href="docs/media/index.html">本地媒体展示页</a> ·
   <a href="docs/media/README.md">媒体来源与说明</a>
 </p>
 
 人物是对话入口，工具与材料形成可追溯的路径。你可以检查一条命令、在片段中提出另一个想法、对照文件修改，或把独立 MCP 接入连接到需要它的 Agent。
 
-上方为**功能示意动画**，讲解共同前缀与独立支线的关系。下方展示图使用实际界面的无损 PNG 取景，配合关系图与操作标注；原始截图也保留可查。
+上方为**独立演示画布的实际操作节选**：选择片段、输入想法、发送支线并打开新对话。录制使用离线协议示例，固定回复不调用模型；文件演示会实际保存公开样本。原生无损 PNG 与未加注解的录屏另行保留。
 
 ## 功能演示
 
@@ -29,26 +30,30 @@
 
 在一个工具回执处直接输入替代方案，开启新支线。它只继承截至该点的公开记录，原路线后来的对话不会混入。共享文件和外部状态仍是当前版本。
 
-[![选择片段、输入新方向、发送并开启独立支线](docs/media/fragment-branch.png)](docs/screenshots/fragment-branch.png)
+[![选择片段、输入新方向、发送并开启独立支线](docs/media/ui-branch-poster.png)](docs/media/clean/fragment-branch.png)
 
 ### 创建 Agent 时，把能力与项目一起选好
 
 自动或手动选择已接入的 Codex，读取实际模型目录，同时绑定真实项目档案。每个 Agent 保持独立 Session；发送第一条消息才开始执行。
 
-[![自动连接 harness、选择项目与模型](docs/media/create-agent.png)](docs/screenshots/create-agent.png)
+[![自动连接 harness、选择项目与模型](docs/media/ui-create-agent-poster.png)](docs/media/clean/create-agent.png)
+
+图中使用已接入的离线协议示例；切换为真实 Codex 后，模型与认证选项来自该 harness。
 
 ### 沿版本路线，看清文件改了哪里
 
 项目档案连接真实目录。打开文件、显式保存，或选择一个历史版本查看逐行增删；遇到外部修改时保留草稿并报告冲突。
 
-[![文件历史与逐行修改位置](docs/media/file-history-diff.png)](docs/screenshots/file-history-diff.png)
+[![实际编辑、保存与逐行修改记录](docs/media/ui-files.gif)](docs/media/ui-files.mp4)
+
+[![文件历史与逐行修改位置](docs/media/ui-files-poster.png)](docs/media/clean/file-history-diff.png)
+
+本次独立样本实际生成 v1 → v2，显示 +3／−1 行；[查看版本连线原图](docs/media/clean/file-version-route.png)。
 
 <details>
 <summary><strong>把 MCP 作为独立能力，连接到不同项目</strong></summary>
 
 填写已有网关的地址与认证方式，通过连线显式应用到目标 Agent。同一接入可连接多个项目，已有绑定保持指定版本。
-
-[![独立 MCP 接入与跨项目绑定](docs/media/mcp-config.png)](docs/screenshots/mcp-config.png)
 
 Docker 图标代表配置的 MCP 网关，不安装 Docker 或启动 daemon。当前支持地址式 Streamable HTTP；实际工具就绪和配置绑定分别核对。
 
@@ -59,13 +64,11 @@ Docker 图标代表配置的 MCP 网关，不安装 Docker 或启动 daemon。�
 
 在当前会话追加纠正，或保留另一条独立路线。运行中先请求打断，等待确认后再发送；已有命令和未知结果继续保留。
 
-[![当前会话纠正与不同想法支线的操作入口](docs/media/conversation-controls.png)](docs/screenshots/conversation-controls.png)
-
-回合中断与 OS 后台命令终止分别记录，不能用一个状态代替另一个。截图中的回合已结束，打断按钮禁用。
+回合中断与 OS 后台命令终止分别记录，不能用一个状态代替另一个。回合结束后，打断按钮禁用。
 
 </details>
 
-所有展示图统一为 **1600×1000（8:5）无损 PNG**；GIF、MP4 与海报使用相同尺寸。点击展示图查看未经标注的 Retina 原图，完整步骤见 [使用指南](docs/USER_GUIDE.md)。
+所有展示图、GIF、MP4 与海报统一为 **1600×1000（8:5）**。点击静态展示图查看 **1036×1448 的原生无损 PNG**；[媒体展示页](docs/media/index.html) 可播放视频、打开原始录屏，也保留 [18 秒上下文示意动画](docs/media/context-branch.mp4)。完整步骤见 [使用指南](docs/USER_GUIDE.md)。
 
 ## 快速开始
 
