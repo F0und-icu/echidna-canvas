@@ -14,7 +14,7 @@ npm run dev:codex
 
 每个 Agent 创建时仍可选择自己的已有项目目录；同项目复用档案，不同项目保留独立文件路线。手动切换档案不改变已有 Agent 的工作目录。
 
-当前每个本地服务选择一个实际 runtime。新增 harness 需要实现 [RuntimeBridge](../server/runtime-port.ts)、事件 codec 与固定 composition 接入，并验证认证、模型、命令和来源语义，见 [P3a](P3A_RUNTIME_CHAT.md)。
+当前每个本地服务使用一个运行时，真实模式支持 Codex。
 
 ## 认证与默认行为
 
@@ -47,33 +47,3 @@ MCP 当前支持已有 HTTP(S) Streamable HTTP 网关，无需认证、Bearer、
 服务数据保存在启动目录下，已加入 Git 忽略；凭据与画布、导出及公开配置元数据分离。文件窗口草稿仅保存在该窗口内存，显式保存才写入磁盘；文件正文与版本不进入画布导出。
 
 刷新浏览器会补齐记录，不启动新回合。服务重启保留历史，但目前不能 Resume 旧真实会话，不自动续跑或把未知结果改成成功。
-
-## 开发检查
-
-```sh
-npm test
-npm run build
-npm run format:check
-```
-
-`build` 包含 TypeScript 检查，也可单独运行 `npm run typecheck`。生产构建可用 `npm run preview` 在 127.0.0.1:4174 本地预览，后端仍另行启动。
-
-浏览器测试使用离线夹具。运行前停止真实后端，避免复用相同端口的真实服务：
-
-```sh
-npx playwright install chromium
-npm run test:e2e
-```
-
-可选的实际 Codex 二进制离线集成：
-
-```sh
-ECHIDNA_CANVAS_TEST_CODEX_BINARY=/absolute/path/to/codex \
-npx vitest run tests/integration/codex-native-fork.test.ts tests/integration/codex-native-mcp.test.ts
-```
-
-两项测试使用独立空 profile、loopback 固定模型与样本 MCP，不读取账户或访问远程模型。
-
-最近代码验收为 184 PASS／两项可选原生测试默认跳过，随后两项实际 Codex 0.163.0 测试另行通过。构建保留主包约 659 kB、按需文件编辑器约 775 kB 的体积提醒。未运行完整 Playwright 套件，实屏证据及局限见 [真实长任务验收](LONG_TASK_ACCEPTANCE_20261019.md)。文档媒体更新不算新的运行时验收。
-
-项目结构为 `web/`、`contracts/`、`server/`、`tests/`、`design/`、`docs/`。P0 原型仍可用 Python 3.10+ 单独查看：`python3 scripts/preview.py --port 4180`，与当前应用是独立入口。

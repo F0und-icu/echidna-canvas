@@ -8,7 +8,7 @@
   <a href="#快速开始">快速开始</a> ·
   <a href="docs/USER_GUIDE.md">使用指南</a> ·
   <a href="docs/PHILOSOPHY.md">项目思想</a> ·
-  <a href="docs/STATUS.md">当前状态</a>
+  <a href="docs/CONFIGURATION.md">配置说明</a>
 </p>
 
 ![Echidna Canvas 的真实项目画布](docs/media/project/canvas.png)
@@ -22,7 +22,7 @@
 
 人物是对话入口，工具与材料形成可追溯的路径。你可以检查一条命令、在片段中提出另一个想法、对照文件修改，或把独立 MCP 接入连接到需要它的 Agent。
 
-截图与视频直接来自项目中的实际界面，统一为 **1920×1080**，没有说明侧栏、拼贴或画面裁切。这里展示此前真实 Codex 长任务的分支、回执、报告与图片；本次拍摄只查看既有记录，没有重新执行任务。
+截图与视频直接来自项目中的实际界面，统一为 **1920×1080**，没有说明侧栏、拼贴或画面裁切。演示展示已完成的真实 Codex 长任务、分支、回执、报告与图片，录制时没有重新执行任务。
 
 ## 功能演示
 
@@ -49,7 +49,7 @@
 
 ![真实 Codex 的自动连接、项目、模型与思考强度配置](docs/media/project/create-agent.png)
 
-截图来自已连接的 Codex 和实际模型目录；拍摄时仅选择配置，没有再次创建会话。
+截图来自已连接的 Codex 和实际模型目录，展示可用配置。
 
 ### 沿版本路线，看清文件改了哪里
 
@@ -57,7 +57,7 @@
 
 ![项目档案中的真实版本与逐行差异](docs/media/project/file-diff.png)
 
-[文件录屏](docs/media/project/project-files.mp4) 展示打开真实任务报告、切换项目和选择既有版本；上图为手动保存历史的 v3 → v4，显示 +3／−2 行。本次没有修改该文件。[查看版本连线](docs/media/project/file-history.png)。
+[文件录屏](docs/media/project/project-files.mp4) 展示打开真实任务报告、切换项目和选择既有版本；上图为手动保存历史的 v3 → v4，显示 +3／−2 行。[查看版本连线](docs/media/project/file-history.png)。
 
 ### 在任务记录里，直接查看实际产物
 
@@ -87,7 +87,7 @@ PNG 保留原始截图像素，视频保留完整应用画面；长记录通过�
 
 ## 快速开始
 
-需要 **Node.js 24+、npm**。真实模式另需本机已有 Codex；最近验证版本为 0.163.0。当前仓库为私有，需要对应 GitHub 访问权限。
+需要 **Node.js 24+、npm**。真实模式另需本机已有 Codex，已验证版本为 0.163.0。
 
 **终端一：启动画布。**
 
@@ -128,32 +128,20 @@ npm run dev:codex
 
 已接入 Codex app-server，支持真实对话、Markdown、终端回执、图片放大、网页主题链接、用户发起的片段分支、项目档案和独立 MCP 配置。
 
-最近的 [真实长任务验收](docs/LONG_TASK_ACCEPTANCE_20261019.md) 使用 Codex 0.163.0 / gpt-6.1-sol，包含网页读取、程序、30 项业务测试、报告与 PNG、实际样本 MCP 调用、分支隔离及打断纠正。代码回归记录为 184 PASS，另有两项原生二进制离线集成通过。
+窄窗口全图可读性、相对产物链接和长图性能仍有限制。暂不支持跨进程 Resume、AI 自动委派及其他 harness；真实 Docker 和外部 MCP OAuth 全流程尚未验证。
 
-仍有明确缺口：窄窗口全图可读性、相对产物链接和长图性能；跨进程 Resume、AI 自动委派、其他 harness、真实 Docker 与外部 MCP OAuth 全流程尚未验收。媒体演示不改变这些结论，具体证据见 [项目状态](docs/STATUS.md)。
+## 使用文档
 
-## 开发与文档
-
-```sh
-npm test
-npm run build
-npm run format:check
-```
-
-浏览器测试、原生 Codex 离线集成、数据保存边界和构建体积提醒见 [配置与检查](docs/CONFIGURATION.md#开发检查)。
-
-| 文档                                                                    | 内容                                           |
-| ----------------------------------------------------------------------- | ---------------------------------------------- |
-| [使用指南](docs/USER_GUIDE.md)                                          | 创建、片段分支、纠正、文件修改、MCP 与常见情况 |
-| [配置说明](docs/CONFIGURATION.md)                                       | Codex 路径、认证、权限默认值、存储与开发检查   |
-| [项目思想](docs/PHILOSOPHY.md)                                          | 长任务中的人参与、上下文边界与事实归属         |
-| [媒体说明](docs/media/README.md) · [项目实屏](docs/media/index.html)    | 完整项目截图、实际记录浏览与来源               |
-| [架构](docs/ARCHITECTURE.md) · [交互契约](docs/INTERACTION_CONTRACT.md) | 数据、命令、事件与来源边界                     |
-| [计划](docs/DEVELOPMENT_PLAN.md) · [验收场景](docs/ACCEPTANCE.md)       | 阶段依赖、完成门槛与实际状态                   |
-| [设计原则](design/DESIGN_PRINCIPLES.md) · [素材说明](docs/ASSETS.md)    | 图形语言、配色、角色及使用范围                 |
+| 文档                                                                 | 内容                                           |
+| -------------------------------------------------------------------- | ---------------------------------------------- |
+| [使用指南](docs/USER_GUIDE.md)                                       | 创建、片段分支、纠正、文件修改、MCP 与常见情况 |
+| [配置说明](docs/CONFIGURATION.md)                                    | Codex 路径、认证、默认行为与数据保存           |
+| [项目思想](docs/PHILOSOPHY.md)                                       | 长任务中的人参与、上下文边界与事实归属         |
+| [项目实屏](docs/media/index.html) · [媒体说明](docs/media/README.md) | 完整项目截图、视频及演示范围                   |
+| [素材说明](docs/ASSETS.md)                                           | 角色、图标来源与使用范围                       |
 
 ## 参考与归属
 
-画布交互参考 [Excalidraw](https://github.com/excalidraw/excalidraw)，图形语言参考 [diagram-design](https://github.com/cathrynlavery/diagram-design)。README 展示结构参考 Excalidraw、[Flowise](https://github.com/FlowiseAI/Flowise) 与 [Continue](https://github.com/continuedev/continue) 的定位、演示、快速开始及文档分层方式，没有复用它们的媒体素材。
+画布交互参考 [Excalidraw](https://github.com/excalidraw/excalidraw)，图形语言参考 [diagram-design](https://github.com/cathrynlavery/diagram-design)。
 
-图标使用 Lucide；角色包含 AI 生成同人形象，来源与范围见 [素材说明](docs/ASSETS.md)。[Echidna Agent](https://github.com/F0und-icu/echidna-agent) 为后续运行时接入目标，目前未接入。本仓库暂未授予整体开源许可，也不声称第三方角色的官方授权或商业分发许可。
+图标使用 Lucide；角色包含 AI 生成同人形象，来源与范围见 [素材说明](docs/ASSETS.md)。本仓库暂未授予整体开源许可，也不声称第三方角色的官方授权或商业分发许可。
