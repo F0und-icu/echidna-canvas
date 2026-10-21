@@ -9,7 +9,7 @@ export function attachRuntimeAgent(workspace: Workspace, id: string, point?: Poi
     view = project(workspace.events);
   const bottom = Math.max(
     80,
-    ...visibleSessions(view, canvas.rootSessions).flatMap((session) => [
+    ...visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions).flatMap((session) => [
       agentPosition(session, view, canvas).y + 200,
       ...session.routes.flatMap((route) =>
         route.rounds.map(
@@ -22,14 +22,18 @@ export function attachRuntimeAgent(workspace: Workspace, id: string, point?: Poi
   return updateCanvas(workspace, (board) => ({
     ...board,
     rootSessions: [...new Set([...board.rootSessions, id])],
+    hiddenSessions: board.hiddenSessions?.filter((hidden) => hidden !== id),
     ...(view.sessions[id].projectRoot
       ? {
           projectRoots: [
             ...new Set([...(board.projectRoots ?? []), view.sessions[id].projectRoot]),
           ],
+          hiddenProjectRoots: board.hiddenProjectRoots?.filter(
+            (root) => root !== view.sessions[id].projectRoot,
+          ),
         }
       : {}),
-    positions: board.rootSessions.includes(id)
+    positions: board.positions[id]
       ? board.positions
       : { ...board.positions, [id]: point ?? { x: 64, y: bottom + 240 } },
     selectedSession: id,

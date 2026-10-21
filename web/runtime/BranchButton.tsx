@@ -76,7 +76,7 @@ export function BranchButton({
           const at = roundPosition(owner, source.routeId, source.round.id, p, c);
           const bottom = Math.max(
             at.y + recordHeight(source.round),
-            ...visibleSessions(p, c.rootSessions).flatMap((s) => [
+            ...visibleSessions(p, c.rootSessions, c.hiddenSessions).flatMap((s) => [
               agentPosition(s, p, c).y + 200,
               ...s.routes.flatMap((r) =>
                 r.rounds.map(

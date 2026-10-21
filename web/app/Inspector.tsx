@@ -1,5 +1,5 @@
 import { lazy, Suspense, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { X } from 'lucide-react';
+import { Trash2, X } from 'lucide-react';
 import { AgentSettings } from '../agents/AgentSettings';
 import { Dialogue } from '../dialogue/Dialogue';
 import { activeRoute, visibleSessions, reportedSessionUsage } from '../model/projection';
@@ -18,13 +18,16 @@ import { useApp } from './context';
 import { RuntimePanel, RuntimeAgent } from '../runtime/RuntimePanel';
 import { useOutsideDismiss } from './useOutsideDismiss';
 import { McpPanel, McpBinding } from '../runtime/McpPanel';
+import { CanvasContents } from './CanvasContents';
+import { CanvasTrash } from './CanvasTrash';
+import type { RemovalTarget } from '../model/deletion';
 
 const ProjectFiles = lazy(() =>
   import('../files/ProjectFiles').then((module) => ({ default: module.ProjectFiles })),
 );
 
 export function Inspector() {
-  const { panel, openPanel, view } = useApp();
+  const { panel, openPanel, view, canvas, requestRemoval } = useApp();
   const inspector = useRef<HTMLElement>(null);
   useOutsideDismiss(!!panel && panel.kind !== 'files', [inspector], () => openPanel(null));
   if (!panel) return null;
@@ -48,6 +51,14 @@ export function Inspector() {
     );
   let title: string, content: ReactNode;
   switch (panel.kind) {
+    case 'trash':
+      title = '回收站 · 临时目录';
+      content = <CanvasTrash />;
+      break;
+    case 'contents':
+      title = '管理画布内容';
+      content = <CanvasContents />;
+      break;
     case 'mcp':
       title = '接入与 MCP';
       content = <McpPanel key={panel.id ?? 'new'} id={panel.id} />;
@@ -141,6 +152,14 @@ export function Inspector() {
       content = <Handoff id={panel.id} />;
       break;
   }
+  const removable: RemovalTarget | null =
+    panel.kind === 'agent' || panel.kind === 'runtime-agent'
+      ? { kind: 'agent', id: panel.sessionId }
+      : panel.kind === 'chat'
+        ? { kind: 'agent', id: panel.source.sessionId }
+        : panel.kind === 'mcp' && panel.id && canvas.connectionIds?.includes(panel.id)
+          ? { kind: 'mcp', id: panel.id }
+          : null;
   return (
     <aside
       ref={inspector}
@@ -151,6 +170,16 @@ export function Inspector() {
     >
       <div className="inspector-heading">
         <h2>{title}</h2>
+        {removable && (
+          <button
+            className="icon-button"
+            aria-label="从当前画布移除"
+            title="从当前画布移除"
+            onClick={() => requestRemoval(removable)}
+          >
+            <Trash2 size={16} />
+          </button>
+        )}
         <button className="icon-button" aria-label="关闭详情" onClick={() => openPanel(null)}>
           <X size={17} />
         </button>
@@ -173,7 +202,7 @@ function SelectAgent() {
   return (
     <div className="stack">
       <p>选择要查看的 Agent。</p>
-      {visibleSessions(view, canvas.rootSessions).map((session) => (
+      {visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions).map((session) => (
         <button
           key={session.id}
           onClick={() =>
@@ -257,7 +286,7 @@ function Budget() {
     session = canvas.selectedSession ? view.sessions[canvas.selectedSession] : undefined;
   if (!session) return <SelectAgent />;
   const route = session.routes.at(-1),
-    sessions = visibleSessions(view, canvas.rootSessions),
+    sessions = visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions),
     usages = sessions.flatMap((s) => {
       const usage = reportedSessionUsage(s);
       return usage ? [usage] : [];
@@ -385,7 +414,7 @@ function LinkForm({ from, to }: { from: string; to: string }) {
 }
 function Handoffs() {
   const { canvas, view, openPanel } = useApp(),
-    sessions = visibleSessions(view, canvas.rootSessions),
+    sessions = visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions),
     ids = new Set(sessions.map((s) => s.id));
   const links = Object.values(view.delegations).filter(
       (d) => ids.has(d.parentId) && ids.has(d.childId),

@@ -19,13 +19,16 @@ export function archiveBounds(files: ArchivedFile[]) {
   };
 }
 export function initialArchivePosition(view: Projection, canvas: CanvasDocument): Point {
-  const bottoms = visibleSessions(view, canvas.rootSessions).flatMap((session) => [
-    agentPosition(session, view, canvas).y + 212,
-    ...session.routes.flatMap((route) =>
-      route.rounds.map(
-        (round) => roundPosition(session, route.id, round.id, view, canvas).y + recordHeight(round),
+  const bottoms = visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions).flatMap(
+    (session) => [
+      agentPosition(session, view, canvas).y + 212,
+      ...session.routes.flatMap((route) =>
+        route.rounds.map(
+          (round) =>
+            roundPosition(session, route.id, round.id, view, canvas).y + recordHeight(round),
+        ),
       ),
-    ),
-  ]);
+    ],
+  );
   return { x: 64, y: Math.max(120, ...bottoms) + 240 };
 }

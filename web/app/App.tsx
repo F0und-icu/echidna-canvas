@@ -23,6 +23,8 @@ import { ProjectArchiveProvider, useProjectArchive } from '../files/archive';
 import { archiveBounds, archivePositionKey, initialArchivePosition } from '../files/archiveLayout';
 import { projectArchivePosition, projectRegionBounds } from '../canvas/projectRegions';
 import { useMcp } from '../runtime/useMcp';
+import { removeCanvasItem, type RemovalTarget } from '../model/deletion';
+import { RemovalDialog } from './RemovalDialog';
 
 export function App() {
   const [loaded, setLoaded] = useState<LoadResult | null>(null);
@@ -75,6 +77,7 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
   const [workspace, setWorkspace] = useState(initial),
     [panel, openPanel] = useState<Panel | null>(null),
     [brush, setBrush] = useState<Brush>('select');
+  const [removal, requestRemoval] = useState<RemovalTarget | null>(null);
   const runtime = useRuntime(workspace, setWorkspace);
   const mcp = useMcp(runtime.connected);
   const archive = useProjectArchive();
@@ -151,20 +154,31 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
   const focusArchive = (root?: string) => {
     setWorkspace((w) =>
       updateCanvas(w, (c) => {
-        const selectedRoot = c.projectRoots?.length
-          ? (root ??
-            (c.selectedSession ? view.sessions[c.selectedSession]?.projectRoot : undefined) ??
-            c.projectRoots[0])
+        const agentRoot = c.selectedSession
+          ? view.sessions[c.selectedSession]?.projectRoot
           : undefined;
+        const selectedRoot =
+          root ??
+          (c.projectRoots?.length
+            ? agentRoot && c.projectRoots.includes(agentRoot)
+              ? agentRoot
+              : c.projectRoots[0]
+            : undefined);
         const at = selectedRoot
           ? projectArchivePosition(selectedRoot, view, c)
           : (c.positions[archivePositionKey] ?? initialArchivePosition(view, c));
         return {
           ...c,
           follow: false,
+          archiveHidden: false,
           ...(selectedRoot
-            ? { projectRoots: [...new Set([...c.projectRoots!, selectedRoot])] }
-            : {}),
+            ? {
+                projectRoots: [...new Set([...(c.projectRoots ?? []), selectedRoot])],
+                hiddenProjectRoots: c.hiddenProjectRoots?.filter(
+                  (hidden) => hidden !== selectedRoot,
+                ),
+              }
+            : { projectRoots: undefined }),
           positions: selectedRoot ? c.positions : { ...c.positions, [archivePositionKey]: at },
           viewport: { zoom: 1, x: 28 - at.x, y: 160 - at.y },
         };
@@ -187,7 +201,14 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
   }, [running, workspace, live]);
   useEffect(() => {
     const keyboard = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement).closest('input,textarea,select')) return;
+      if (
+        e.defaultPrevented ||
+        document.querySelector('dialog[open]') ||
+        (e.target as HTMLElement).closest(
+          'input,textarea,select,[contenteditable="true"],[role="textbox"]',
+        )
+      )
+        return;
       const key = e.key.toLowerCase(),
         keys: Record<string, Brush> = {
           v: 'select',
@@ -208,17 +229,23 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
       } else if (key === 'escape') {
         openPanel(null);
         setBrush('select');
-      } else if (
-        ['backspace', 'delete'].includes(key) &&
-        currentCanvas(workspace).selectedDrafts.length
-      ) {
-        e.preventDefault();
-        setWorkspace((w) => removeDrafts(w, currentCanvas(w).selectedDrafts));
+      } else if (['backspace', 'delete'].includes(key)) {
+        if (canvas.selectedDrafts.length && (!panel || panel.kind === 'draft')) {
+          e.preventDefault();
+          setWorkspace((w) => removeDrafts(w, currentCanvas(w).selectedDrafts));
+          openPanel(null);
+        } else if (
+          canvas.selectedSession &&
+          (!panel || ['agent', 'chat', 'runtime-agent'].includes(panel.kind))
+        ) {
+          e.preventDefault();
+          requestRemoval({ kind: 'agent', id: canvas.selectedSession });
+        }
       } else if (!e.metaKey && !e.ctrlKey && !e.altKey && keys[key]) setBrush(keys[key]);
     };
     window.addEventListener('keydown', keyboard);
     return () => window.removeEventListener('keydown', keyboard);
-  }, [workspace]);
+  }, [workspace, panel, canvas]);
   const zoom = (factor: number) =>
     setWorkspace((w) =>
       updateCanvas(w, (c) => ({
@@ -232,7 +259,7 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
     );
   const fit = () => {
     const board = boardRef.current!,
-      sessions = visibleSessions(view, canvas.rootSessions);
+      sessions = visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions);
     const archiveEntry = board.querySelector<HTMLElement>('.archive-entry')!;
     const rightInset = archiveEntry.offsetWidth
       ? board.clientWidth - archiveEntry.offsetLeft + 24
@@ -247,7 +274,10 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
       ...(canvas.projectRoots ?? []).map((root) =>
         projectRegionBounds(root, view, canvas, archive.indexes[root]),
       ),
-      ...(!canvas.projectRoots?.length && canvas.positions[archivePositionKey] && archive.index
+      ...(canvas.projectRoots === undefined &&
+      !canvas.archiveHidden &&
+      canvas.positions[archivePositionKey] &&
+      archive.index
         ? [{ ...canvas.positions[archivePositionKey], ...archiveBounds(archive.index.files) }]
         : []),
       ...sessions.flatMap((session) => [
@@ -311,6 +341,7 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
         panel,
         openPanel,
         notify,
+        requestRemoval,
         focusAgent,
         focusArchive,
         runtime,
@@ -339,6 +370,22 @@ function WorkspaceApp({ initial }: { initial: Workspace }) {
             zoom={zoom}
           />
           <Inspector />
+          {removal && (
+            <RemovalDialog
+              target={removal}
+              onCancel={() => requestRemoval(null)}
+              onConfirm={() => {
+                setWorkspace((workspace) => removeCanvasItem(workspace, removal));
+                requestRemoval(null);
+                openPanel(null);
+                notify(
+                  removal.kind === 'canvas'
+                    ? '画布已移入回收站，任务记录保留'
+                    : '已从画布移除，可在回收站恢复',
+                );
+              }}
+            />
+          )}
           <span className="save-status" role="status">
             {saveError || (savedWorkspace === workspace ? '已保存在此浏览器' : '保存中…')}
           </span>

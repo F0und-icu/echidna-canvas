@@ -23,6 +23,7 @@ import {
   ListTree,
   CornerLeftUp,
   Maximize,
+  Trash2,
 } from 'lucide-react';
 import type { Brush } from '../model/schema';
 import {
@@ -35,6 +36,7 @@ import {
   planKey,
   scenarioNames,
   updateCanvas,
+  removeDrafts,
 } from '../model/workspace';
 import { project } from '../model/projection';
 import { useApp } from './context';
@@ -71,8 +73,17 @@ export function Chrome({
   fit: () => void;
   zoom: (factor: number) => void;
 }) {
-  const { workspace, canvas, view, live, setWorkspace, openPanel, focusAgent, focusArchive } =
-    useApp();
+  const {
+    workspace,
+    canvas,
+    view,
+    live,
+    setWorkspace,
+    openPanel,
+    focusAgent,
+    focusArchive,
+    requestRemoval,
+  } = useApp();
   const [menu, setMenu] = useState<string | null>(null);
   const menuElement = useRef<HTMLElement>(null),
     menuTriggers = useRef<HTMLDivElement>(null);
@@ -173,6 +184,8 @@ export function Chrome({
                 </button>
               ))}
               <hr />
+              {section('管理画布内容', () => openPanel({ kind: 'contents' }))}
+              {section('回收站', () => openPanel({ kind: 'trash' }))}
               {section('项目档案', () => openPanel({ kind: 'files' }))}
               {section('定位档案修改路线', () => {
                 openPanel(null);
@@ -205,6 +218,8 @@ export function Chrome({
                 setWorkspace(duplicateCanvas);
                 openPanel(null);
               })}
+              {section('管理画布内容', () => openPanel({ kind: 'contents' }))}
+              {section('删除当前画布', () => requestRemoval({ kind: 'canvas', id: canvas.id }))}
               <label className="menu-field">
                 画布名称
                 <input
@@ -233,7 +248,7 @@ export function Chrome({
                   <span>{c.id === canvas.id ? '✓' : ''}</span>
                 </button>
               ))}
-              <p>副本引用同一份演示记录。</p>
+              <p>副本引用同一份任务记录。</p>
             </>
           )}
           {menu === 'scenarios' &&
@@ -284,6 +299,7 @@ export function Chrome({
           )}
           {menu === 'edit' && (
             <>
+              {section('管理画布内容', () => openPanel({ kind: 'contents' }))}
               <button
                 disabled={!canvas.undo.length}
                 onClick={() => setWorkspace((w) => moveDraftHistory(w, false))}
@@ -317,6 +333,24 @@ export function Chrome({
           <Redo2 size={15} />
         </button>
         <span className="bar-separator" />
+        {(canvas.selectedDrafts.length > 0 || canvas.selectedSession) && (
+          <button
+            aria-label={canvas.selectedDrafts.length ? '删除选中图形' : '移除选中 Agent'}
+            title={
+              canvas.selectedDrafts.length
+                ? '删除选中图形 · Delete'
+                : '从当前画布移除 Agent · Delete'
+            }
+            onClick={() => {
+              if (canvas.selectedDrafts.length) {
+                setWorkspace((workspace) => removeDrafts(workspace, canvas.selectedDrafts));
+                openPanel(null);
+              } else requestRemoval({ kind: 'agent', id: canvas.selectedSession! });
+            }}
+          >
+            <Trash2 size={15} />
+          </button>
+        )}
         <button
           aria-label="聚焦当前 Agent"
           disabled={!canvas.selectedSession}

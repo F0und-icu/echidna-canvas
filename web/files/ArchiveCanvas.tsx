@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BookOpen, FileText, RefreshCw } from 'lucide-react';
+import { BookOpen, FileText, RefreshCw, Trash2 } from 'lucide-react';
 import { Character } from '../agents/Character';
 import { useApp } from '../app/context';
 import { updateCanvas } from '../model/workspace';
@@ -30,7 +30,7 @@ export function ArchiveCanvas({
   useEffect(() => {
     if (root) void archive.refresh(root);
   }, [root, archive.refresh]);
-  const { canvas, view, panel, openPanel, setWorkspace } = useApp();
+  const { canvas, view, panel, openPanel, setWorkspace, requestRemoval } = useApp();
   useEffect(() => {
     if (!root && !position && index?.files.length)
       setWorkspace((w) =>
@@ -83,6 +83,13 @@ export function ArchiveCanvas({
       </button>
       <div className="archive-route-tools">
         <small>修改路线</small>
+        <button
+          aria-label="从画布移除项目档案"
+          title="移除档案路线，保留文件与版本"
+          onClick={() => requestRemoval({ kind: 'project', root })}
+        >
+          <Trash2 size={12} />
+        </button>
         <button
           aria-label="刷新档案路线"
           disabled={busy}

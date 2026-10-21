@@ -506,10 +506,16 @@ export function reportedSessionUsage(session: Session): { input: number; output:
   );
 }
 
-export function visibleSessions(projection: Projection, roots: readonly string[]): Session[] {
+export function visibleSessions(
+  projection: Projection,
+  roots: readonly string[],
+  hidden: readonly string[] = [],
+): Session[] {
   const visible = new Set(roots);
+  const excluded = new Set(hidden);
   // Sessions are projected in creation order: parents precede their children.
   return Object.values(projection.sessions).filter((session) => {
+    if (excluded.has(session.id)) return false;
     if (session.parentId && visible.has(session.parentId)) visible.add(session.id);
     return visible.has(session.id);
   });

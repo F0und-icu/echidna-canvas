@@ -1,5 +1,6 @@
 import { activeRoute, project } from './projection';
 import { makeFixture, materials, sampleConfig, sampleTask } from './fixtures';
+import { archiveCanvasContent } from './trash';
 import {
   workspaceSchema,
   type AgentConfig,
@@ -69,6 +70,7 @@ export function emptyCanvas(id: string, name: string): CanvasDocument {
     name,
     scenario: null,
     rootSessions: [],
+    projectRoots: [],
     positions: {},
     viewport: { x: 20, y: 50, zoom: 0.9 },
     paper: 'plain',
@@ -337,12 +339,20 @@ export function moveDraftHistory(workspace: Workspace, redo: boolean): Workspace
   });
 }
 export function removeDrafts(workspace: Workspace, ids: readonly string[]): Workspace {
+  const canvas = currentCanvas(workspace);
   const removed = new Set(ids),
     drafts = currentCanvas(workspace).drafts.filter(
       (draft) =>
         !removed.has(draft.id) && !removed.has(draft.from ?? '') && !removed.has(draft.to ?? ''),
     );
-  return updateCanvas(editDrafts(workspace, drafts), (canvas) => ({
+  const deleted = canvas.drafts.filter((draft) => !drafts.includes(draft));
+  const archived = archiveCanvasContent(
+    workspace,
+    canvas,
+    deleted.length === 1 ? deleted[0].title || '手工图形' : `${deleted.length} 个手工图形与连线`,
+    { kind: 'drafts', drafts: deleted },
+  );
+  return updateCanvas(editDrafts(archived, drafts), (canvas) => ({
     ...canvas,
     selectedDrafts: [],
   }));

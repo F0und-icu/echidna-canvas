@@ -20,6 +20,7 @@ it('shows historical bindings without exposing enabled runtime controls in a his
     panel: null,
     openPanel: () => {},
     notify: () => {},
+    requestRemoval: () => {},
     focusAgent: () => {},
     focusArchive: () => {},
     mcp: {

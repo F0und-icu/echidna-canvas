@@ -58,6 +58,94 @@ summary:focus-visible {
 .echidna-app textarea {
   resize: vertical;
 }
+.removal-dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid var(--ec-line);
+  border-radius: 18px;
+  color: var(--ec-text);
+  background: var(--ec-paper);
+  box-shadow: 0 16px 64px #0002;
+}
+.removal-dialog::backdrop {
+  background: #24231f38;
+}
+.removal-dialog header,
+.removal-dialog footer,
+.canvas-content-row,
+.canvas-contents h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.removal-dialog header > svg {
+  color: var(--ec-primary);
+  flex-shrink: 0;
+}
+.removal-dialog h2 {
+  margin: 0;
+  flex: 1;
+  font-size: 17px;
+}
+.removal-name {
+  display: block;
+  margin-top: 22px;
+  color: var(--ec-title);
+  overflow-wrap: anywhere;
+}
+.removal-dialog p {
+  line-height: 1.8;
+}
+.removal-dialog footer {
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+.removal-dialog footer button {
+  border: 1px solid var(--ec-line);
+  border-radius: 9px;
+  padding: 8px 14px;
+  background: transparent;
+}
+.removal-dialog footer .primary-button {
+  background: var(--ec-primary);
+  color: var(--ec-paper);
+  border-color: var(--ec-primary);
+}
+.canvas-contents h3 {
+  margin: 8px 0 2px;
+  color: var(--ec-title);
+  font-size: 14px;
+}
+.canvas-contents h3 small {
+  margin-left: auto;
+}
+.canvas-content-row {
+  min-width: 0;
+  padding: 4px 0;
+}
+.canvas-content-row > :first-child {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.canvas-content-row > button:last-child {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.canvas-content-row small {
+  display: block;
+  font-size: 11px;
+  color: var(--ec-muted);
+}
+.canvas-contents .canvas-content-row .content-label {
+  text-align: left;
+  background: transparent;
+  border-color: transparent;
+}
 .echidna-app input:not([type='checkbox']):not([type='radio']):focus-visible,
 .echidna-app textarea:focus-visible,
 .echidna-app select:focus-visible {
@@ -1942,6 +2030,9 @@ hr {
   align-items: center;
   text-align: center;
 }
+.draft:not(.draft-frame) {
+  z-index: 1;
+}
 .draft svg {
   position: absolute;
   inset: 0;
@@ -2032,6 +2123,9 @@ hr {
   align-items: center;
   gap: 12px;
   margin-bottom: 14px;
+}
+.inspector-heading h2 {
+  flex: 1;
 }
 .inspector :where(h2) {
   margin: 0;

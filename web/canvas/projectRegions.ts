@@ -9,7 +9,7 @@ import { archiveBounds } from '../files/archiveLayout';
 export const projectArchiveKey = (root: string) => 'project-archive:' + root;
 
 function contentBoxes(root: string, view: Projection, canvas: CanvasDocument) {
-  return visibleSessions(view, canvas.rootSessions)
+  return visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions)
     .filter((session) => session.projectRoot === root)
     .flatMap((session) => [
       { ...agentPosition(session, view, canvas), w: 150, h: 212 },

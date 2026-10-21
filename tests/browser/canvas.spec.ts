@@ -66,7 +66,7 @@ test('a dialogue forks at the chosen event and retains the earlier path', async 
     .fill('先核对真实环境，不修改文件');
   await page.getByRole('button', { name: '发送', exact: true }).click();
   await page.getByRole('button', { name: '接收下一条演示事件', exact: true }).click();
-  await close(page);
+  await expect(page.locator('.inspector')).toHaveCount(0);
   await page.locator('.round-record.current .round-thought').click();
   await page.getByRole('button', { name: '补充信息，开启新路线' }).click();
   await expect(page.getByRole('button', { name: '采用建议，开启新路线' })).toBeVisible();

@@ -246,7 +246,10 @@ export const canvasSchema = z.object({
   name: z.string().min(1),
   scenario: z.enum(['feedback', 'steering', 'handoff']).nullable(),
   rootSessions: z.array(z.string()),
+  hiddenSessions: z.array(z.string()).optional(),
   projectRoots: z.array(z.string()).optional(),
+  hiddenProjectRoots: z.array(z.string()).optional(),
+  archiveHidden: z.boolean().optional(),
   connectionIds: z.array(z.string()).optional(),
   positions: z.record(z.string(), pointSchema),
   viewport: z.object({
@@ -272,6 +275,27 @@ export const workspaceSchema = z.object({
   canvases: z.array(canvasSchema).min(1),
   activeCanvas: z.string(),
   chatDrafts: z.record(z.string(), z.string().max(4000)).optional(),
+  trash: z
+    .array(
+      z.object({
+        id: z.string(),
+        deletedAt: z.string(),
+        canvasName: z.string(),
+        label: z.string(),
+        content: z.discriminatedUnion('kind', [
+          z.object({ kind: z.literal('canvas'), canvas: canvasSchema }),
+          z.object({ kind: z.literal('drafts'), drafts: z.array(draftSchema) }),
+          z.object({ kind: z.literal('agent'), id: z.string(), position: pointSchema.optional() }),
+          z.object({
+            kind: z.literal('project'),
+            root: z.string().optional(),
+            position: pointSchema.optional(),
+          }),
+          z.object({ kind: z.literal('mcp'), id: z.string(), position: pointSchema.optional() }),
+        ]),
+      }),
+    )
+    .optional(),
   appearance: z.object({
     theme: z.enum(['paper', 'sage', 'night', 'custom']),
     colors: z.array(z.string().regex(/^#[0-9a-f]{6}$/i)).length(9),
@@ -290,5 +314,6 @@ export type FixtureStep = z.infer<typeof stepSchema>;
 export type Draft = z.infer<typeof draftSchema>;
 export type CanvasDocument = z.infer<typeof canvasSchema>;
 export type Workspace = z.infer<typeof workspaceSchema>;
+export type TrashEntry = NonNullable<Workspace['trash']>[number];
 export type Brush =
   'select' | 'hand' | 'agent' | Exclude<Draft['kind'], 'relation'> | 'connect' | 'eraser';

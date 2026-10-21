@@ -57,8 +57,24 @@ export class RuntimeHttpError extends Error {
   }
 }
 export async function requestRuntime(path: string, init?: RequestInit) {
-  const response = await fetch(`/api/runtime${path}`, init);
-  const body: unknown = await response.json();
+  let response: Response;
+  try {
+    response = await fetch(`/api/runtime${path}`, init);
+  } catch (cause) {
+    throw new Error('无法连接本地服务，请先启动服务，再重新连接。', { cause });
+  }
+  const text = await response.text();
+  // A malformed body cannot confirm command admission or rejection.
+  if (!text.trim())
+    throw new Error(`本地服务返回空响应（HTTP ${response.status}），请检查服务是否已启动。`);
+  let body: unknown;
+  try {
+    body = JSON.parse(text);
+  } catch (cause) {
+    throw new Error(`本地服务返回了无效响应（HTTP ${response.status}），请检查服务地址与状态。`, {
+      cause,
+    });
+  }
   if (!response.ok)
     throw new RuntimeHttpError(
       response.status,

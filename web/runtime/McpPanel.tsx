@@ -96,8 +96,8 @@ function McpEditor({ existing }: { existing?: McpConnection }) {
     setWorkspace((workspace) =>
       updateCanvas(workspace, (board) => {
         const view = project(workspace.events);
-        const agents = visibleSessions(view, board.rootSessions).map((session) =>
-          agentPosition(session, view, board),
+        const agents = visibleSessions(view, board.rootSessions, board.hiddenSessions).map(
+          (session) => agentPosition(session, view, board),
         );
         const at = agents.length
           ? {

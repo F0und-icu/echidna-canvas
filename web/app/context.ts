@@ -3,6 +3,7 @@ import type { CanvasDocument, Point, Source, Workspace } from '../model/schema';
 import type { Projection } from '../model/projection';
 import type { RuntimeConnection } from '../runtime/useRuntime';
 import type { useMcp } from '../runtime/useMcp';
+import type { RemovalTarget } from '../model/deletion';
 
 export type Panel =
   | { kind: 'mcp'; id?: string }
@@ -17,7 +18,16 @@ export type Panel =
   | { kind: 'runtime-agent'; sessionId: string }
   | { kind: 'files'; root?: string; path?: string; revisionId?: number }
   | {
-      kind: 'appearance' | 'execution' | 'budget' | 'events' | 'relations' | 'handoffs' | 'runtime';
+      kind:
+        | 'appearance'
+        | 'execution'
+        | 'budget'
+        | 'events'
+        | 'relations'
+        | 'handoffs'
+        | 'runtime'
+        | 'contents'
+        | 'trash';
     };
 export interface AppContextValue {
   workspace: Workspace;
@@ -28,6 +38,7 @@ export interface AppContextValue {
   panel: Panel | null;
   openPanel: (panel: Panel | null) => void;
   notify: (text: string) => void;
+  requestRemoval: (target: RemovalTarget) => void;
   focusAgent: (id: string, latest?: boolean) => void;
   focusArchive: (root?: string) => void;
   runtime: RuntimeConnection;

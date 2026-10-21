@@ -103,6 +103,7 @@ test('Codex fixture events grow the canvas, remain source-linked, and survive re
   await expect(page.getByRole('textbox', { name: '对话消息', exact: true })).toHaveValue(
     '这是我的自定义消息\n请保持原文和换行。',
   );
+  await expect(page.getByRole('status').filter({ hasText: '已保存在此浏览器' })).toBeVisible();
   await page.reload();
   await page.locator('.replay-name').click();
   await expect(page.getByRole('textbox', { name: '对话消息', exact: true })).toHaveValue(
@@ -142,12 +143,12 @@ test('a lost runtime result stays unknown and disables new dispatches', async ({
   await create(page);
   await page.getByText('任务与运行设置', { exact: true }).click();
   await page.getByRole('combobox', { name: '协议场景' }).selectOption('disconnect');
-  await page.getByRole('button', { name: '发送' }).click();
+  await page.getByRole('button', { name: '发送', exact: true }).click();
   await expect(page.locator('.inspector')).toContainText('状态待核对；不能重新派发已有命令');
   await expect(page.locator('.runtime-connection-fault')).toContainText('运行时连接中断');
   await expect(page.locator('.runtime-round .round-header')).toContainText('结果待核对');
   await expect(page.locator('.runtime-round .round-warning')).toHaveCount(1);
-  await expect(page.getByRole('button', { name: '发送' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: '发送', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: '查看最近回合' }).click();
   await expect(page.locator('.inspector')).toContainText('状态待核对');
   await expect(page.locator('.inspector')).not.toContainText('回合已结束');

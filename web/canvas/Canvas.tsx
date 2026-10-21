@@ -75,15 +75,30 @@ export function Canvas({
   boardRef: RefObject<HTMLElement | null>;
   children: ReactNode;
 }) {
-  const { workspace, canvas, view, panel, setWorkspace, openPanel, notify, focusArchive, mcp } =
-    useApp();
+  const {
+    workspace,
+    canvas,
+    view,
+    panel,
+    setWorkspace,
+    openPanel,
+    notify,
+    focusArchive,
+    mcp,
+    requestRemoval,
+  } = useApp();
   const [gesture, setGesture] = useState<Gesture | null>(null),
     [space, setSpace] = useState(false);
   const [connectFrom, setConnectFrom] = useState<{
     id: string;
     kind: 'agent' | 'draft' | 'mcp';
   } | null>(null);
-  const sessions = visibleSessions(view, canvas.rootSessions);
+  const sessions = visibleSessions(view, canvas.rootSessions, canvas.hiddenSessions);
+  const archiveOnCanvas =
+    !!canvas.projectRoots?.length ||
+    (canvas.projectRoots === undefined &&
+      !canvas.archiveHidden &&
+      !!canvas.positions[archivePositionKey]);
   const archive = useProjectArchive();
   const point = (event: { clientX: number; clientY: number }) =>
     screenToWorld(
@@ -274,8 +289,16 @@ export function Canvas({
     } else if (brush === 'eraser') {
       const draftId = target.closest<HTMLElement>('[data-draft]')?.dataset.draft;
       if (draftId) setWorkspace((w) => removeDrafts(w, [draftId]));
-      else if (hit?.kind === 'agent' || target.closest('.round-record'))
-        notify('橡皮只作用于手工草稿，执行记录保留');
+      else if (hit?.kind === 'agent') requestRemoval({ kind: 'agent', id: hit.id });
+      else if (hit?.kind === 'mcp') requestRemoval({ kind: 'mcp', id: hit.id });
+      else if (target.closest('[data-archive-root]'))
+        requestRemoval({
+          kind: 'project',
+          root:
+            target.closest<HTMLElement>('[data-archive-root]')!.dataset.archiveRoot || undefined,
+        });
+      else if (target.closest('.round-record,.archive-canvas'))
+        notify('执行与版本记录保留；请在角色处移除整条画布路径。');
       return;
     } else if (brush === 'agent') {
       openPanel({ kind: 'create', point: p });
@@ -313,13 +336,16 @@ export function Canvas({
         start: p,
         at: p,
       });
-    } else if (hit?.kind === 'draft') {
+    } else if (target.closest('[data-draft]')) {
+      const draftId = target.closest<HTMLElement>('[data-draft]')!.dataset.draft!;
       const ids = e.shiftKey
-        ? [...new Set([...canvas.selectedDrafts, hit.id])]
-        : canvas.selectedDrafts.includes(hit.id)
+        ? [...new Set([...canvas.selectedDrafts, draftId])]
+        : canvas.selectedDrafts.includes(draftId)
           ? canvas.selectedDrafts
-          : [hit.id];
-      setWorkspace((w) => updateCanvas(w, (c) => ({ ...c, selectedDrafts: ids })));
+          : [draftId];
+      setWorkspace((w) =>
+        updateCanvas(w, (c) => ({ ...c, selectedSession: null, selectedDrafts: ids })),
+      );
       setGesture({ type: 'draft', ids, start: p, at: p });
     } else setGesture({ type: 'box', start: p, at: p });
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -382,6 +408,9 @@ export function Canvas({
       }
     }
     if (gesture.type === 'mcp') {
+      setWorkspace((w) =>
+        updateCanvas(w, (c) => ({ ...c, selectedSession: null, selectedDrafts: [] })),
+      );
       if (moved)
         setWorkspace((workspace) =>
           updateCanvas(workspace, (board) => ({
@@ -399,6 +428,9 @@ export function Canvas({
       else openPanel({ kind: 'mcp', id: gesture.id });
     }
     if (gesture.type === 'archive') {
+      setWorkspace((w) =>
+        updateCanvas(w, (c) => ({ ...c, selectedSession: null, selectedDrafts: [] })),
+      );
       if (moved)
         setWorkspace((w) =>
           updateCanvas(w, (c) => ({
@@ -443,7 +475,12 @@ export function Canvas({
           })
           .map((draft) => draft.id);
       setWorkspace((w) =>
-        updateCanvas(w, (c) => ({ ...c, selectedDrafts: selected, follow: false })),
+        updateCanvas(w, (c) => ({
+          ...c,
+          selectedSession: null,
+          selectedDrafts: selected,
+          follow: false,
+        })),
       );
       if (!moved) openPanel(null);
     }
@@ -703,7 +740,7 @@ export function Canvas({
               .filter(
                 (link) =>
                   sessions.some((session) => session.id === link.parentId) &&
-                  view.sessions[link.childId],
+                  sessions.some((session) => session.id === link.childId),
               )
               .map((link) => {
                 const source = roundPosition(
@@ -788,7 +825,16 @@ export function Canvas({
               aria-label={`草稿 ${draft.title}`}
               style={{ left: draft.x, top: draft.y, width: draft.w, height: draft.h }}
               onClick={(e) => {
-                if (!e.detail) openPanel({ kind: 'draft', id: draft.id });
+                if (!e.detail) {
+                  setWorkspace((w) =>
+                    updateCanvas(w, (c) => ({
+                      ...c,
+                      selectedSession: null,
+                      selectedDrafts: [draft.id],
+                    })),
+                  );
+                  openPanel({ kind: 'draft', id: draft.id });
+                }
               }}
             >
               {!['note', 'frame'].includes(draft.kind) && (
@@ -812,7 +858,12 @@ export function Canvas({
               aria-label={`配置接入：${connection?.name ?? 'MCP'}`}
               style={{ left: at.x, top: at.y }}
               onClick={(event) => {
-                if (!event.detail) openPanel({ kind: 'mcp', id });
+                if (!event.detail) {
+                  setWorkspace((w) =>
+                    updateCanvas(w, (c) => ({ ...c, selectedSession: null, selectedDrafts: [] })),
+                  );
+                  openPanel({ kind: 'mcp', id });
+                }
               }}
             >
               <McpIcon kind={connection?.kind ?? 'mcp'} size={54} />
@@ -834,7 +885,11 @@ export function Canvas({
                 onClick={(e) => {
                   if (!e.detail) {
                     setWorkspace((w) =>
-                      updateCanvas(w, (c) => ({ ...c, selectedSession: session.id })),
+                      updateCanvas(w, (c) => ({
+                        ...c,
+                        selectedSession: session.id,
+                        selectedDrafts: [],
+                      })),
                     );
                     openPanel(
                       route
@@ -912,18 +967,18 @@ export function Canvas({
               </button>
             );
           })}
-        {canvas.projectRoots?.length ? (
-          canvas.projectRoots.map((root) => (
-            <ArchiveCanvas
-              key={root}
-              root={root}
-              positionKey={projectArchiveKey(root)}
-              position={projectArchivePosition(root, view, display)}
-            />
-          ))
-        ) : (
-          <ArchiveCanvas position={display.positions[archivePositionKey]} />
-        )}
+        {canvas.projectRoots !== undefined
+          ? canvas.projectRoots.map((root) => (
+              <ArchiveCanvas
+                key={root}
+                root={root}
+                positionKey={projectArchiveKey(root)}
+                position={projectArchivePosition(root, view, display)}
+              />
+            ))
+          : !canvas.archiveHidden && (
+              <ArchiveCanvas position={display.positions[archivePositionKey]} />
+            )}
         {gesture &&
           ['box', 'draw'].includes(gesture.type) &&
           'start' in gesture &&
@@ -956,31 +1011,26 @@ export function Canvas({
           </svg>
         )}
       </div>
-      {!sessions.length && !canvas.drafts.length && (
-        <div className="empty-canvas">
-          <p>让第一个 Agent，从这里开始。</p>
-          <button
-            className="text-button"
-            onClick={() => openPanel({ kind: 'create', point: { x: 64, y: 320 } })}
-          >
-            创建 Agent
-          </button>
-        </div>
-      )}
+      {!sessions.length &&
+        !canvas.drafts.length &&
+        !canvas.connectionIds?.length &&
+        !archiveOnCanvas && (
+          <div className="empty-canvas">
+            <p>让第一个 Agent，从这里开始。</p>
+            <button
+              className="text-button"
+              onClick={() => openPanel({ kind: 'create', point: { x: 64, y: 320 } })}
+            >
+              创建 Agent
+            </button>
+          </div>
+        )}
       <button
         className="archive-entry"
-        aria-label={
-          canvas.projectRoots?.length || canvas.positions[archivePositionKey]
-            ? '定位档案修改路线'
-            : '项目档案'
-        }
-        onClick={() =>
-          canvas.projectRoots?.length || canvas.positions[archivePositionKey]
-            ? focusArchive()
-            : openPanel({ kind: 'files' })
-        }
+        aria-label={archiveOnCanvas ? '定位档案修改路线' : '项目档案'}
+        onClick={() => (archiveOnCanvas ? focusArchive() : openPanel({ kind: 'files' }))}
       >
-        {canvas.positions[archivePositionKey] ? (
+        {archiveOnCanvas ? (
           <BookOpen size={22} />
         ) : (
           <Character
@@ -989,7 +1039,7 @@ export function Canvas({
             pose={panel?.kind === 'files' ? 'reading' : 'idle'}
           />
         )}
-        <span>{canvas.positions[archivePositionKey] ? '档案路线' : '项目档案'}</span>
+        <span>{archiveOnCanvas ? '档案路线' : '项目档案'}</span>
       </button>
       {brush !== 'select' && !panel && (
         <div className="brush-hint" aria-live="polite">
@@ -998,7 +1048,7 @@ export function Canvas({
             : brush === 'hand'
               ? '拖动纸面 · Ctrl / ⌘ 滚轮缩放'
               : brush === 'eraser'
-                ? '擦除手工草稿'
+                ? '擦除草稿，或点击角色移除 · 内容进入回收站'
                 : brush === 'agent'
                   ? '点击纸面，放置 Agent'
                   : '在纸面点击或拖动画笔'}

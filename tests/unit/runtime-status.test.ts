@@ -67,6 +67,7 @@ function render(
     panel: null,
     openPanel: () => {},
     notify: () => {},
+    requestRemoval: () => {},
     focusAgent: () => {},
     focusArchive: () => {},
     mcp: { connections: [], error: '', refresh: async () => {}, remember: () => {} },
